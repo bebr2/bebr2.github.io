@@ -1,0 +1,665 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#fec8c9">
+  <meta name="author" content="BeBr2">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="这部分是和baseline有关的数据处理环节。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kaggle首战记录(2)-English Language Learning-baseline的数据处理">
+<meta property="og:url" content="https://bebr2.github.io/2022/09/11/Kaggle%E9%A6%96%E6%88%98%E8%AE%B0%E5%BD%95(2)-English%20Language%20Learning-baseline%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="BeBr2&#39;s Blog">
+<meta property="og:description" content="这部分是和baseline有关的数据处理环节。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-09-11/0.png">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-09-11/1.png">
+<meta property="article:published_time" content="2022-09-10T16:52:43.000Z">
+<meta property="article:modified_time" content="2022-09-10T16:52:43.000Z">
+<meta property="article:author" content="BeBr2">
+<meta property="article:tag" content="NLP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bebr2.github.io/img/article_content/2022-09-11/0.png">
+  
+  
+  
+  <title>Kaggle首战记录(2)-English Language Learning-baseline的数据处理 - BeBr2&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"bebr2.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 80vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BeBr2</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/boat.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Kaggle首战记录(2)-English Language Learning-baseline的数据处理</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-11 00:52" pubdate>
+          2022年9月11日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          57 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Kaggle首战记录(2)-English Language Learning-baseline的数据处理</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>这部分是和baseline有关的数据处理环节。</p>
+<span id="more"></span>
+<h2 id="EDA"><a href="#EDA" class="headerlink" title="EDA"></a>EDA</h2><p>和统计一样，上来得先做一个数据探索EDA。</p>
+<p><img src="/img/article_content/2022-09-11/0.png" srcset="/img/loading.gif" lazyload></p>
+<p>瞄一下数据，大概是成正态分布，这比较符合常识，因此可以说不太存在数据不平衡的现象。</p>
+<p>注意这里的数据不平衡是指训练集和真实分布的差距，而不是score值的相互比较。</p>
+<p>数据共3911行，说实话不多，因此也比较依赖之后的数据增强。</p>
+<p>baseline打算用roberta-base做预训练层，roberta的预训练任务token数都是不超过512的，因此EDA也要关注数据过roberta的tokenizer后的情况。</p>
+<p>导入数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">path = <span class="hljs-string">&#x27;../../../mydata/ka/ell/train.csv&#x27;</span><br><br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br>data = pd.read_csv(path)<br>data[<span class="hljs-string">&#x27;full_text&#x27;</span>] = data[<span class="hljs-string">&#x27;full_text&#x27;</span>].apply(<span class="hljs-keyword">lambda</span> x: x.strip()) <span class="hljs-comment">#简单地去除一下头尾</span><br><br><span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> RobertaTokenizer<br>tokenizer = RobertaTokenizer.from_pretrained(<span class="hljs-string">&#x27;../../../mydata/roberta-base/&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="token数"><a href="#token数" class="headerlink" title="token数"></a>token数</h3><p>然后把文本列用tokenizer映射一下，关注token数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">token_len_df = data[<span class="hljs-string">&#x27;full_text&#x27;</span>].<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> x : tokenizer(x, return_tensors=<span class="hljs-string">&#x27;pt&#x27;</span>)[<span class="hljs-string">&quot;input_ids&quot;</span>].shape[<span class="hljs-number">1</span>])<br><br><span class="hljs-built_in">print</span>(token_len_df.<span class="hljs-built_in">max</span>())<br><span class="hljs-built_in">print</span>(token_len_df.<span class="hljs-built_in">min</span>())<br><span class="hljs-built_in">print</span>(token_len_df.mean())<br><span class="hljs-built_in">print</span>(token_len_df.median())<br><span class="hljs-built_in">print</span>(token_len_df.count())<br><span class="hljs-built_in">print</span>(token_len_df[token_len_df &gt; <span class="hljs-number">512</span>].count())<br></code></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-number">1457</span><br><span class="hljs-number">28</span><br><span class="hljs-number">493.9312196369215</span><br><span class="hljs-number">463.0</span><br><span class="hljs-number">3911</span><br><span class="hljs-number">1555</span><br></code></pre></td></tr></table></figure>
+
+<p>可以看到最长的已经到1457了，而且大于512的有接近一半了，因此考虑切割。</p>
+<h3 id="段落数"><a href="#段落数" class="headerlink" title="段落数"></a>段落数</h3><p>切割怎么切好呢？段落一般是文意的分割点，因此我们再EDA一下段落：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_paragraph_count</span>(<span class="hljs-params">x</span>): <span class="hljs-comment">#计算段落数量，其实后来想想直接用正则表达式对文本操作不是更方便（</span><br>    sen_tensor = tokenizer(x, return_tensors=<span class="hljs-string">&#x27;pt&#x27;</span>)[<span class="hljs-string">&quot;input_ids&quot;</span>][<span class="hljs-number">0</span>]<br>    count = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> token <span class="hljs-keyword">in</span> sen_tensor:<br>        <span class="hljs-keyword">if</span> token.item() == <span class="hljs-number">50118</span>:<br>            count += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> count / <span class="hljs-number">2</span> + <span class="hljs-number">1</span><br><br>paragraph_count_df = data[<span class="hljs-string">&#x27;full_text&#x27;</span>].<span class="hljs-built_in">map</span>(get_paragraph_count)<br><br><span class="hljs-built_in">print</span>(paragraph_count_df.<span class="hljs-built_in">max</span>())<br><span class="hljs-built_in">print</span>(paragraph_count_df.<span class="hljs-built_in">min</span>())<br><span class="hljs-built_in">print</span>(paragraph_count_df.mean())<br><span class="hljs-built_in">print</span>(paragraph_count_df.median())<br><span class="hljs-built_in">print</span>(paragraph_count_df[paragraph_count_df &gt; <span class="hljs-number">30</span>].count())<br></code></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-number">52.0</span><br><span class="hljs-number">1.0</span><br><span class="hljs-number">5.538097673229353</span><br><span class="hljs-number">5.0</span><br><span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
+
+<p>也就是有的居然达到了52段！实在是丧心病狂，看一下原文：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(data[<span class="hljs-string">&#x27;full_text&#x27;</span>][paragraph_count_df.idxmax()])<br></code></pre></td></tr></table></figure>
+
+<p>输出如下，只能说很会玩：</p>
+<p><img src="/img/article_content/2022-09-11/1.png" srcset="/img/loading.gif" lazyload></p>
+<p>本来我还进行了段落中最大token数的探索，但现在感觉没必要，无论探索结果如何，你都不可能仅仅把段落数作为唯一切割依据。</p>
+<h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><p>数据处理的方法就呼之欲出了，对于一条长文本，先转化为token，然后不断二分切割，当然这个二分只是“类”二分，最好按段落切割，其次的分割标准是句号。然后我发现有的作文连句号都没有，因此还加上了逗号和空格。</p>
+<h3 id="处理过程"><a href="#处理过程" class="headerlink" title="处理过程"></a>处理过程</h3><p>代码如下：</p>
+<p>是用递归实现的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">txt_to_tensor</span>(<span class="hljs-params">x</span>):<br>    x = x.strip()<br>    sen_tensor = tokenizer(x, return_tensors=<span class="hljs-string">&#x27;pt&#x27;</span>, padding=<span class="hljs-string">&quot;max_length&quot;</span>, max_length=<span class="hljs-number">512</span>)[<span class="hljs-string">&quot;input_ids&quot;</span>] <span class="hljs-comment">#padding补齐，不然没办法cat</span><br>    <span class="hljs-keyword">if</span> sen_tensor.shape[<span class="hljs-number">1</span>] &lt;= <span class="hljs-number">512</span>:  <span class="hljs-comment">#如果本段落合格了，则返回</span><br>        <span class="hljs-keyword">return</span> sen_tensor<br>    str_len_mid = <span class="hljs-built_in">len</span>(x) // <span class="hljs-number">2</span> <span class="hljs-comment">#句子中央</span><br>    about_mid = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">try</span>:<br>        about_mid = str_len_mid + x[str_len_mid:].index(<span class="hljs-string">&#x27;\n&#x27;</span>) <span class="hljs-comment">#否则尝试在句子中央之后找一找换行符</span><br>    <span class="hljs-keyword">except</span>:<br>        <span class="hljs-keyword">try</span>:<br>            about_mid = str_len_mid - x[str_len_mid::-<span class="hljs-number">1</span>].index(<span class="hljs-string">&#x27;\n&#x27;</span>) <span class="hljs-comment">#如果找不到，在句子中央之前找一找换行符</span><br>        <span class="hljs-keyword">except</span>:<br>            <span class="hljs-keyword">try</span>:<br>                about_mid = str_len_mid + x[str_len_mid:].index(<span class="hljs-string">&#x27;.&#x27;</span>) <span class="hljs-comment">#再找不到，找找句号</span><br>                x1 = txt_to_tensor(x[:about_mid])<br>                x2 = txt_to_tensor(x[about_mid+<span class="hljs-number">1</span>:])<br>                <span class="hljs-keyword">return</span> torch.cat((x1, x2))<br>            <span class="hljs-keyword">except</span>:<br>                about_mid = str_len_mid + x[str_len_mid:].index(<span class="hljs-string">&#x27;,&#x27;</span>) <span class="hljs-comment">#逗号</span><br>                x1 = txt_to_tensor(x[:about_mid])<br>                x2 = txt_to_tensor(x[about_mid+<span class="hljs-number">1</span>:])<br>                <span class="hljs-keyword">return</span> torch.cat((x1, x2))<br>    <span class="hljs-keyword">if</span> about_mid &gt; str_len_mid * <span class="hljs-number">1.5</span> <span class="hljs-keyword">or</span> about_mid &lt; str_len_mid * <span class="hljs-number">0.5</span>: <span class="hljs-comment">#尽量分割合理，如果两边长度差别太大，试试用句号分割</span><br>        <span class="hljs-keyword">try</span>:<br>            about_mid2 = str_len_mid + x[str_len_mid:].index(<span class="hljs-string">&#x27;.&#x27;</span>)<br>            <span class="hljs-keyword">if</span> <span class="hljs-built_in">abs</span>(about_mid2 - str_len_mid) &lt; <span class="hljs-built_in">abs</span>(about_mid - str_len_mid):<br>                about_mid = about_mid2<br>        <span class="hljs-keyword">except</span>:<br>            <span class="hljs-keyword">pass</span><br>    x1 = txt_to_tensor(x[:about_mid]) <span class="hljs-comment">#再递归探索</span><br>    x2 = txt_to_tensor(x[about_mid+<span class="hljs-number">1</span>:])<br>    <span class="hljs-keyword">return</span> torch.cat((x1, x2))<br></code></pre></td></tr></table></figure>
+
+<p>这个处理方法是<strong>有问题的</strong>：</p>
+<p>首先，分割其实可以不用那么合理，毕竟连28个token的文章都有。</p>
+<p>其次，对于不同的评分维度，数据处理的要求是不同的，本方法的目的是尽可能地保存“段落”、“章节”，而像语法句法、短语词汇这些可能根本不需要保留这些信息，但在baseline六个维度一起训练的条件下这还是有必要的。</p>
+<p>处理方法的问题也给数据增强带来思路（虽然这不叫增强了叫查漏补缺）</p>
+<p>不管那么多了，我们apply一下，再看看我们处理后每个数据的子句多少：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">data[<span class="hljs-string">&#x27;full_tensor&#x27;</span>] = data[<span class="hljs-string">&#x27;full_text&#x27;</span>].apply(txt_to_tensor)<br><br>d = data[<span class="hljs-string">&#x27;full_tensor&#x27;</span>].<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> x: x.shape[<span class="hljs-number">0</span>])<br><span class="hljs-built_in">print</span>(d.<span class="hljs-built_in">max</span>())<br><span class="hljs-built_in">print</span>(d[d&gt;<span class="hljs-number">1</span>].count())<br></code></pre></td></tr></table></figure>
+
+<p>输出如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-number">5</span><br><span class="hljs-number">1555</span><br></code></pre></td></tr></table></figure>
+
+<p>也就是最多有5个子句，多于1个子句的有1555个，和上面大于512token的数量一样。</p>
+<h3 id="数据集创建"><a href="#数据集创建" class="headerlink" title="数据集创建"></a>数据集创建</h3><p>写一个十折交叉检验的数据集：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">writing_dataset</span>(<span class="hljs-title class_ inherited__">Dataset</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, data=data, ki = <span class="hljs-number">0</span>, typ=<span class="hljs-string">&#x27;train&#x27;</span></span>):<br>        self.x = []<br>        self.y = [] <span class="hljs-comment">#六维的评分</span><br>        self.k = <span class="hljs-number">10</span> <span class="hljs-comment">#10折交叉</span><br>        self.xy = []<br>        <span class="hljs-keyword">for</span> dat <span class="hljs-keyword">in</span> data.iterrows():<br>            self.x.append(dat[<span class="hljs-number">1</span>][<span class="hljs-string">&#x27;full_tensor&#x27;</span>])<br>            self.y.append(torch.tensor([dat[<span class="hljs-number">1</span>][<span class="hljs-string">&#x27;cohesion&#x27;</span>], dat[<span class="hljs-number">1</span>][<span class="hljs-string">&#x27;syntax&#x27;</span>], dat[<span class="hljs-number">1</span>][<span class="hljs-string">&#x27;vocabulary&#x27;</span>], dat[<span class="hljs-number">1</span>][<span class="hljs-string">&#x27;phraseology&#x27;</span>], dat[<span class="hljs-number">1</span>][<span class="hljs-string">&#x27;grammar&#x27;</span>], dat[<span class="hljs-number">1</span>][<span class="hljs-string">&#x27;conventions&#x27;</span>]]))<br>        self.length = <span class="hljs-built_in">len</span>(self.y)<br>        self.xy.extend((self.x[i], self.y[i]) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(self.length))<br>        random.seed(<span class="hljs-number">1</span>)<br>        random.shuffle(self.xy)<br>        self.my_xy = []<br>        every_z_len = self.length // self.k<br>        <span class="hljs-keyword">if</span> typ == <span class="hljs-string">&#x27;val&#x27;</span>:<br>            self.my_xy = self.xy[every_z_len * ki : every_z_len * (ki+<span class="hljs-number">1</span>)]<br>        <span class="hljs-keyword">elif</span> typ == <span class="hljs-string">&#x27;train&#x27;</span>:<br>            self.my_xy = self.xy[: every_z_len * ki] + self.xy[every_z_len * (ki+<span class="hljs-number">1</span>) :]<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Wrong type!&#x27;</span>)<br><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__getitem__</span>(<span class="hljs-params">self, index</span>):<br>        <span class="hljs-keyword">return</span> self.my_xy[index]<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__len__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">len</span>(self.my_xy)<br></code></pre></td></tr></table></figure>
+
+<p>平平无奇的写法，注意数据集的自变量是二维的tensor，tensor的第一个维度（子句数）是不一样的，所以在dataloader的时候要写一个collate函数处理一下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">collate</span>(<span class="hljs-params">batches</span>):<br>    max_sub_count = <span class="hljs-number">0</span><br>    first = <span class="hljs-literal">True</span><br>    x = <span class="hljs-literal">None</span><br>    y = <span class="hljs-literal">None</span><br>    <span class="hljs-keyword">for</span> batch <span class="hljs-keyword">in</span> batches:<br>        max_sub_count = <span class="hljs-built_in">max</span>(max_sub_count, batch[<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]) <span class="hljs-comment">#统计batch内的最大子句数</span><br>    <span class="hljs-keyword">for</span> batch <span class="hljs-keyword">in</span> batches:<br>        <span class="hljs-keyword">if</span> first:<br>            first = <span class="hljs-literal">False</span><br>            x = batch[<span class="hljs-number">0</span>]<br>            y = batch[<span class="hljs-number">1</span>].unsqueeze(<span class="hljs-number">0</span>) <span class="hljs-comment">#batch[1]的维度是[6]，这里变成了[1, 6]才好cat</span><br>        <span class="hljs-keyword">else</span>:<br>            x = torch.cat((x, batch[<span class="hljs-number">0</span>]))<br>            y = torch.cat((y, batch[<span class="hljs-number">1</span>].unsqueeze(<span class="hljs-number">0</span>)))<br><br>        need_sub_count = max_sub_count - batch[<span class="hljs-number">0</span>].shape[<span class="hljs-number">0</span>]<br><br>        <span class="hljs-keyword">if</span> need_sub_count:<br>            x = torch.cat((x, torch.repeat_interleave(batch[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>].unsqueeze(<span class="hljs-number">0</span>), need_sub_count, dim=<span class="hljs-number">0</span>))) <span class="hljs-comment">#没到最大子句的，取第一个子句来补充，注意，这导致了我们池化层必须是maxpool，或者反过来maxpool下我们才能这么做。</span><br><br>    <span class="hljs-keyword">return</span> x, y<br></code></pre></td></tr></table></figure>
+
+<p>数据处理就到这里。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Kaggle%E5%AE%9E%E6%88%98/" class="category-chain-item">Kaggle实战</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Kaggle%E5%AE%9E%E6%88%98/English-Language-Learning/" class="category-chain-item">English Language Learning</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/NLP/">#NLP</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Kaggle首战记录(2)-English Language Learning-baseline的数据处理</div>
+      <div>https://bebr2.github.io/2022/09/11/Kaggle首战记录(2)-English Language Learning-baseline的数据处理/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>BeBr2</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月11日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc/4.0/">
+              <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                <i class="iconfont icon-nc"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/10/Kaggle%E9%A6%96%E6%88%98%E8%AE%B0%E5%BD%95(1)-English%20Language%20Learning-%E6%AF%94%E8%B5%9B%E7%AE%80%E4%BB%8B%E5%8F%8A%E8%AF%BB%E9%A2%98/" title="Kaggle首战记录(1)-English Language Learning-比赛简介及读题">
+                        <span class="hidden-mobile">Kaggle首战记录(1)-English Language Learning-比赛简介及读题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>THU<span> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Theme：Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
