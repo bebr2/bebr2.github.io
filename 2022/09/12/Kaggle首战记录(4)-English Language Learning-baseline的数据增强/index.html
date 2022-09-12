@@ -1,0 +1,644 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#fec8c9">
+  <meta name="author" content="BeBr2">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数据增强后是否真的有用还有待商榷，但确实增加了0.01个点。另外还学会了nlp处理的很多库。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kaggle首战记录(4)-English Language Learning-baseline的数据增强">
+<meta property="og:url" content="https://bebr2.github.io/2022/09/12/Kaggle%E9%A6%96%E6%88%98%E8%AE%B0%E5%BD%95(4)-English%20Language%20Learning-baseline%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA/index.html">
+<meta property="og:site_name" content="BeBr2&#39;s Blog">
+<meta property="og:description" content="数据增强后是否真的有用还有待商榷，但确实增加了0.01个点。另外还学会了nlp处理的很多库。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-09-12/0.png">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-09-12/1.png">
+<meta property="article:published_time" content="2022-09-12T08:00:29.000Z">
+<meta property="article:modified_time" content="2022-09-12T08:00:29.000Z">
+<meta property="article:author" content="BeBr2">
+<meta property="article:tag" content="NLP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bebr2.github.io/img/article_content/2022-09-12/0.png">
+  
+  
+  
+  <title>Kaggle首战记录(4)-English Language Learning-baseline的数据增强 - BeBr2&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"bebr2.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 80vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BeBr2</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/boat.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Kaggle首战记录(4)-English Language Learning-baseline的数据增强</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-12 16:00" pubdate>
+          2022年9月12日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          42 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Kaggle首战记录(4)-English Language Learning-baseline的数据增强</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>数据增强后是否真的有用还有待商榷，但确实增加了0.01个点。另外还学会了nlp处理的很多库。</p>
+<span id="more"></span>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>个人认为数据增强有几个要点：1.真的增强了；2.不要改变数据分布。</p>
+<p>数据增强一般是在自变量做手脚，也就是说评分不变，如何去改输入。</p>
+<p>NLP数据增强可以看看这篇：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/bd7c9dad3100">NLP中简单的数据增强方法 - 简书 (jianshu.com)</a>，文中提到数据增强要做到：</p>
+<p>（1）增加的数据要保证和原数据一致的语义信息。<br>（2）增加的数据需要多样化。</p>
+<p>本题是长文本，数据增强其实有点困难，增删改词都行，但是变化少了——没多大用，变化大了——会影响评分。而且我们baseline是六个维度在一起的，适合词级别的增强不一定适合段落级别。并且，NLP那些回译、同义词等的改变，比较适合情感分类这种比较宏观的，不太适合这种需要注意到微观的文章评分。</p>
+<p>因此我的解决办法如下：</p>
+<p>1.在句号、逗号后随机增删空格、换行符（这对tokenizer有影响，算是一种噪声）</p>
+<p>2.查找错误单词，改正一半的单词，并把同样数量的正确单词破坏</p>
+<p>3.在to_tensor的时候，对于大于等于三个子句的文本，以大小为2的滑动窗口，1为步长滑动。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>对前3700个数据做数据增强，剩下的是验证集（切忌全部增强再划分，否则验证集和训练集有相似的，很难公正地检测性能）</p>
+<h3 id="主代码"><a href="#主代码" class="headerlink" title="主代码"></a>主代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3700</span>):<br>    text_ = data[<span class="hljs-string">&#x27;full_text&#x27;</span>][i]<br>    err_list = get_error_words(text_)  <span class="hljs-comment">#得到文本中的错误单词，和改正后的单词，当然这种检测是纯传统的、统计式的</span><br><br>    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>): <span class="hljs-comment">#一个数据生成两个增强数据</span><br>        text = text_<br>        rx = <span class="hljs-string">r&quot;\.(?=\S)&quot;</span><br>        text = re.sub(rx, <span class="hljs-string">&quot;. &quot;</span>, text)<br>        rx = <span class="hljs-string">r&quot;\,(?=\S)&quot;</span><br>        text = re.sub(rx, <span class="hljs-string">&quot;, &quot;</span>, text) <span class="hljs-comment">#先把逗号，句号后的空格这些规范好</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(err_list) &gt; <span class="hljs-number">1</span>:<br>            choice_num = <span class="hljs-built_in">int</span>(p * (<span class="hljs-built_in">len</span>(err_list) + <span class="hljs-number">1</span>)) <span class="hljs-comment">#p设置为0.5</span><br>            need_to_correct = random.sample(err_list, choice_num) <span class="hljs-comment">#随机选择一半</span><br>            <span class="hljs-keyword">for</span> word_tuple <span class="hljs-keyword">in</span> need_to_correct:<br>                text = text.replace(word_tuple[<span class="hljs-number">0</span>], word_tuple[<span class="hljs-number">1</span>], <span class="hljs-number">1</span>) <span class="hljs-comment">#改正</span><br>            spl = <span class="hljs-built_in">list</span>(text.split()) <span class="hljs-comment">#以空格分词</span><br>            d = random.sample(<span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(spl)), choice_num) <span class="hljs-comment">#随机取文中的单词破坏</span><br>            <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> d:<br>                choosepool = <span class="hljs-built_in">list</span>(edits1(spl[k])) <span class="hljs-comment">#edits1为编辑距离为1的单词</span><br>                spl[k] = random.choice(choosepool)<br>            text = <span class="hljs-string">&#x27; &#x27;</span>.join(spl)<br>        <br>        text = correct_text(text) <span class="hljs-comment">#随机加空格和换行</span><br>        data.loc[<span class="hljs-built_in">len</span>(data)] = data.loc[i]<br>        data[<span class="hljs-string">&#x27;full_text&#x27;</span>][<span class="hljs-built_in">len</span>(data)-<span class="hljs-number">1</span>] = text<br>    <span class="hljs-keyword">if</span> i % <span class="hljs-number">10</span> == <span class="hljs-number">0</span>:<br>        <span class="hljs-built_in">print</span>(i)<br></code></pre></td></tr></table></figure>
+
+<h3 id="各函数实现"><a href="#各函数实现" class="headerlink" title="各函数实现"></a>各函数实现</h3><p>导入这个库，检查单词是否正确的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> enchant.checker <span class="hljs-keyword">import</span> SpellChecker<br></code></pre></td></tr></table></figure>
+
+<p>先来看编辑距离为1的函数，这是魔改网上看到的一个函数得到的。我自己加了一个0.5编辑距离，也就是有单引号和没单引号之间的距离视为更小，因为Cheker库得到的修改单词不太智能，是<strong>返回一个列表</strong>，我需要自己在这个列表中选择更好的单词来修改。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">edits1</span>(<span class="hljs-params">word, typ = <span class="hljs-string">&quot;nohalf&quot;</span></span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">        返回跟输入单词是1距离的单词</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 26个英文字母   ord():获取&#x27;a&#x27;的码  chr():通过码还原对应的字符</span><br>    t = [<span class="hljs-built_in">chr</span>(<span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;a&#x27;</span>) + i) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">26</span>)]<br>    t.extend([<span class="hljs-built_in">chr</span>(<span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;A&#x27;</span>) + i) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">26</span>)])<br>    alphabet = <span class="hljs-string">&#x27;&#x27;</span>.join(t)<br>    <span class="hljs-keyword">if</span> typ == <span class="hljs-string">&#x27;half&#x27;</span>:<br>        alphabet = <span class="hljs-string">&#x27;&#x27;</span>.join([<span class="hljs-built_in">chr</span>(<span class="hljs-built_in">ord</span>(<span class="hljs-string">&quot;&#x27;&quot;</span>))])<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">splits</span>(<span class="hljs-params">word</span>):<br>        <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">            分割单词    以cta为例：  (&quot;&quot;,&quot;cat&quot;)  (&quot;c&quot;,&quot;at&quot;)  (&quot;ca&quot;,&quot;&quot;)   (&quot;cat&quot;,&quot;&quot;)</span><br><span class="hljs-string">        &quot;&quot;&quot;</span><br>        <span class="hljs-keyword">return</span> [(word[:i], word[i:])<br>                <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(word) + <span class="hljs-number">1</span>)]<br><br>    <span class="hljs-comment"># 分割好的单词</span><br>    pairs = splits(word)<br><br>    <br>    deletes = []<br>    transposes = []<br><br>    <span class="hljs-keyword">if</span> typ != <span class="hljs-string">&#x27;half&#x27;</span>:<br>        <span class="hljs-comment"># 删除某个字符</span><br>        deletes = [a + b[<span class="hljs-number">1</span>:] <span class="hljs-keyword">for</span> (a, b) <span class="hljs-keyword">in</span> pairs <span class="hljs-keyword">if</span> b]<br>        <span class="hljs-comment"># 两个字符换位置</span><br>        transposes = [a + b[<span class="hljs-number">1</span>] + b[<span class="hljs-number">0</span>] + b[<span class="hljs-number">2</span>:] <span class="hljs-keyword">for</span> (a, b) <span class="hljs-keyword">in</span> pairs <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(b) &gt; <span class="hljs-number">1</span>]<br>    <span class="hljs-comment"># 替换某个字符</span><br>    replaces = [a + c + b[<span class="hljs-number">1</span>:] <span class="hljs-keyword">for</span> (a, b) <span class="hljs-keyword">in</span> pairs <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> alphabet <span class="hljs-keyword">if</span> b]<br>    <span class="hljs-comment"># 插入某个字符</span><br>    inserts = [a + c + b <span class="hljs-keyword">for</span> (a, b) <span class="hljs-keyword">in</span> pairs <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> alphabet]<br>    <span class="hljs-comment"># 返回集合</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">set</span>(deletes + transposes + replaces + inserts)<br></code></pre></td></tr></table></figure>
+
+<p>这里更倾向于选择编辑距离为1的单词，如果没有再随便选。而如果有相差一个单引号的更好。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> contextlib<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_error_words</span>(<span class="hljs-params">sen</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    返回错误单词的二元组的列表：(错误, 正确)</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    chkr = SpellChecker(<span class="hljs-string">&quot;en_US&quot;</span>) <span class="hljs-comment">#引入语料库</span><br>    chkr.set_text(sen) <span class="hljs-comment">#检查单词</span><br>    err_list = []<br>    <span class="hljs-keyword">for</span> err <span class="hljs-keyword">in</span> chkr:<br>        correct_list = chkr.suggest(err.word)<br>        a = edits1(err.word, <span class="hljs-string">&#x27;half&#x27;</span>) <span class="hljs-comment">#相差一个单引号</span><br>        b = edits1(err.word) <span class="hljs-comment">#编辑距离为1</span><br>        edits1_list = []<br>        perfect = <span class="hljs-literal">False</span><br>        <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> correct_list:<br>            <span class="hljs-keyword">if</span> word <span class="hljs-keyword">in</span> a:<br>                err_list.append((err.word, word))<br>                perfect = <span class="hljs-literal">True</span><br>                <span class="hljs-keyword">break</span><br>            <span class="hljs-keyword">if</span> word <span class="hljs-keyword">in</span> b:<br>                edits1_list.append(word)<br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> perfect:<br>            <span class="hljs-keyword">if</span> edits1_list:<br>                err_list.append((err.word, edits1_list[<span class="hljs-number">0</span>]))<br>            <span class="hljs-keyword">else</span>:<br>                <span class="hljs-keyword">with</span> contextlib.suppress(Exception):<br>                    err_list.append((err.word, correct_list[<span class="hljs-number">0</span>]))<br>    <span class="hljs-keyword">return</span> err_list<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">correct</span>(<span class="hljs-params">word</span>):<br>    a = random.uniform(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">if</span> a &lt;= <span class="hljs-number">0.15</span>:<br>        <span class="hljs-keyword">return</span> word[<span class="hljs-number">0</span>] <span class="hljs-comment">#15%的概率消除空格</span><br>    <span class="hljs-keyword">elif</span> <span class="hljs-number">0.15</span> &lt; a &lt;= <span class="hljs-number">0.25</span>:<br>        <span class="hljs-keyword">return</span> word + <span class="hljs-string">&#x27;\n\n&#x27;</span> <span class="hljs-comment">#10%的概率增加换行</span><br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">return</span> word <span class="hljs-comment">#其余不变</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">correct_match</span>(<span class="hljs-params"><span class="hljs-keyword">match</span></span>):<br>    word = <span class="hljs-keyword">match</span>.group()<br>    <span class="hljs-keyword">return</span> correct(word)<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">correct_text</span>(<span class="hljs-params">text</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    对符号后的空格进行是否删除</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">return</span> re.sub(<span class="hljs-string">&#x27;[,.?!] &#x27;</span>, correct_match, text)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">data.to_csv(<span class="hljs-string">&quot;newtrain.csv&quot;</span>, index=<span class="hljs-literal">False</span>)<br></code></pre></td></tr></table></figure>
+
+<p>最后再储存起来，得到了11000条数据。</p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>训练效果是有提升的，原来的baseline训练的时候也最高到0.48。</p>
+<p><img src="/img/article_content/2022-09-12/0.png" srcset="/img/loading.gif" lazyload></p>
+<p>在CPU上也达到第6名（比前几天高我的两位哥们高了，但是杀出来几个更牛的）</p>
+<p><img src="/img/article_content/2022-09-12/1.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Kaggle%E5%AE%9E%E6%88%98/" class="category-chain-item">Kaggle实战</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Kaggle%E5%AE%9E%E6%88%98/English-Language-Learning/" class="category-chain-item">English Language Learning</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/NLP/">#NLP</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Kaggle首战记录(4)-English Language Learning-baseline的数据增强</div>
+      <div>https://bebr2.github.io/2022/09/12/Kaggle首战记录(4)-English Language Learning-baseline的数据增强/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>BeBr2</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月12日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc/4.0/">
+              <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                <i class="iconfont icon-nc"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/11/Kaggle%E9%A6%96%E6%88%98%E8%AE%B0%E5%BD%95(3)-English%20Language%20Learning-baseline%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E8%AE%AD%E7%BB%83/" title="Kaggle首战记录(3)-English Language Learning-baseline的设计和训练">
+                        <span class="hidden-mobile">Kaggle首战记录(3)-English Language Learning-baseline的设计和训练</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>THU<span> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Theme：Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
