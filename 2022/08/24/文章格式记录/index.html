@@ -299,57 +299,52 @@
             
               <div class="markdown-body">
                 
-                <h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><h2 id="Front-Matter"><a href="#Front-Matter" class="headerlink" title="Front-Matter"></a>Front-Matter</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs markdown">---<br><span class="hljs-section">#冒号后都要加空格！</span><br>title: 文章标题<br>tags: [Hexo, Fluid]  #标签<br>index<span class="hljs-emphasis">_img: /img/example.jpg   #首页展示的文章图</span><br><span class="hljs-emphasis">banner_</span>img: /img/post<span class="hljs-emphasis">_banner.jpg #文章上部大图</span><br><span class="hljs-emphasis">date: 2019-10-10 10:00:00 #优先根据 front-matter 里 date 字段，其次是 md 文件日期</span><br><span class="hljs-emphasis">updated: 2019-10-10 10:00:01 #指定更新时间</span><br><span class="hljs-emphasis">excerpt: 摘要</span><br><span class="hljs-emphasis"></span><br><span class="hljs-emphasis">categories:</span><br><span class="hljs-emphasis">- [Diary, PlayStation]</span><br><span class="hljs-emphasis">- [Diary, Games]</span><br><span class="hljs-emphasis">- [Life]</span><br><span class="hljs-emphasis"></span><br><span class="hljs-emphasis">hide: true #在首页隐藏，且会使文章在分类和标签类里都不显示</span><br><span class="hljs-emphasis">sticky: 100 #数值越大，该文章越靠前，达到类似于置顶的效果</span><br><span class="hljs-emphasis"></span><br><span class="hljs-emphasis">---</span><br><span class="hljs-emphasis">以下是文章内容</span><br></code></pre></td></tr></table></figure>
-
+                <h1>模板</h1>
+<h2 id="Front-Matter">Front-Matter</h2>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs markdown">---<br><span class="hljs-section">#冒号后都要加空格！</span><br>title: 文章标题<br>tags: [Hexo, Fluid]  #标签<br>index<span class="hljs-emphasis">_img: /img/example.jpg   #首页展示的文章图</span><br><span class="hljs-emphasis">banner_</span>img: /img/post<span class="hljs-emphasis">_banner.jpg #文章上部大图</span><br><span class="hljs-emphasis">date: 2019-10-10 10:00:00 #优先根据 front-matter 里 date 字段，其次是 md 文件日期</span><br><span class="hljs-emphasis">updated: 2019-10-10 10:00:01 #指定更新时间</span><br><span class="hljs-emphasis">excerpt: 摘要</span><br><span class="hljs-emphasis"></span><br><span class="hljs-emphasis">categories:</span><br><span class="hljs-emphasis">- [Diary, PlayStation]</span><br><span class="hljs-emphasis">- [Diary, Games]</span><br><span class="hljs-emphasis">- [Life]</span><br><span class="hljs-emphasis"></span><br><span class="hljs-emphasis">hide: true #在首页隐藏，且会使文章在分类和标签类里都不显示</span><br><span class="hljs-emphasis">sticky: 100 #数值越大，该文章越靠前，达到类似于置顶的效果</span><br><span class="hljs-emphasis"></span><br><span class="hljs-emphasis">---</span><br><span class="hljs-emphasis">以下是文章内容</span><br></code></pre></td></tr></table></figure>
 <p>手动指定摘要的另一种方式，使用 <code>&lt;!-- more --&gt;</code> MD文档里划分，如：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown">正文的一部分作为摘要<br>&lt;!-- more --&gt;<br>余下的正文<br></code></pre></td></tr></table></figure>
-
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown">这是一句话 [^1]<br>[<span class="hljs-symbol">^1</span>]: <span class="hljs-link">这是对应的脚注</span><br></code></pre></td></tr></table></figure>
-
+<h2 id="正文">正文</h2>
+<h3 id="脚注">脚注</h3>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown">这是一句话 [^1]<br>[<span class="hljs-symbol">^1</span>]: <span class="hljs-link">这是对应的脚注</span><br></code></pre></td></tr></table></figure>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs markdown">正文<br><br><span class="hljs-section">## 参考</span><br>[<span class="hljs-symbol">^1</span>]: <span class="hljs-link">参考资料1</span><br>[<span class="hljs-symbol">^2</span>]: <span class="hljs-link">参考资料2</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="勾选框"><a href="#勾选框" class="headerlink" title="勾选框"></a>勾选框</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">&#123;% cb text, checked?, incline? %&#125;<br></code></pre></td></tr></table></figure>
-
+<h3 id="勾选框">勾选框</h3>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">&#123;% cb text, checked?, incline? %&#125;<br></code></pre></td></tr></table></figure>
 <p>依次是文本、是否勾选、后面的文字是否不换行（默认false换行）</p>
-<h3 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">&#123;% btn url, text, title %&#125;<br></code></pre></td></tr></table></figure>
-
+<h3 id="按钮">按钮</h3>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">&#123;% btn url, text, title %&#125;<br></code></pre></td></tr></table></figure>
 <p>依次是跳转链接、按钮文本、鼠标悬停文本</p>
-<h3 id="组图"><a href="#组图" class="headerlink" title="组图"></a>组图</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs markdown">&#123;% gi total n1-n2-... %&#125;<br>  ![](<span class="hljs-link">url</span>)<br>  ![](<span class="hljs-link">url</span>)<br>  ![](<span class="hljs-link">url</span>)<br>  ![](<span class="hljs-link">url</span>)<br>  ![](<span class="hljs-link">url</span>)<br>&#123;% endgi %&#125;<br></code></pre></td></tr></table></figure>
-
-<p>total：图片总数量，对应中间包含的图片 url 数量。<br>n1-n2-…：每行的图片数量，可以省略，默认单行最多 3 张图，求和必须相等于 total，否则按默认样式。</p>
-<h3 id="便签"><a href="#便签" class="headerlink" title="便签"></a>便签</h3><h4 id="行便签"><a href="#行便签" class="headerlink" title="行便签"></a>行便签</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown">&#123;% note success %&#125;<br>文字 或者 <span class="hljs-code">`markdown`</span> 均可<br>&#123;% endnote %&#125;<br></code></pre></td></tr></table></figure>
-
+<h3 id="组图">组图</h3>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs markdown">&#123;% gi total n1-n2-... %&#125;<br>  ![](<span class="hljs-link">url</span>)<br>  ![](<span class="hljs-link">url</span>)<br>  ![](<span class="hljs-link">url</span>)<br>  ![](<span class="hljs-link">url</span>)<br>  ![](<span class="hljs-link">url</span>)<br>&#123;% endgi %&#125;<br></code></pre></td></tr></table></figure>
+<p>total：图片总数量，对应中间包含的图片 url 数量。<br>
+n1-n2-…：每行的图片数量，可以省略，默认单行最多 3 张图，求和必须相等于 total，否则按默认样式。</p>
+<h3 id="便签">便签</h3>
+<h4 id="行便签">行便签</h4>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown">&#123;% note success %&#125;<br>文字 或者 <span class="hljs-code">`markdown`</span> 均可<br>&#123;% endnote %&#125;<br></code></pre></td></tr></table></figure>
 <div class="note note-primary">
             <p>primary</p>
           </div>
-
 <div class="note note-secondary">
             <p>secondary</p>
           </div>
-
 <div class="note note-success">
             <p>success</p>
           </div>
-
 <div class="note note-info">
             <p>info</p>
           </div>
-
 <div class="note note-danger">
             <p>danger</p>
           </div>
-
 <div class="note note-warning">
             <p>warning</p>
           </div>
-
 <div class="note note-light">
             <p>light</p>
           </div>
-
-<h4 id="行内便签"><a href="#行内便签" class="headerlink" title="行内便签"></a>行内便签</h4><p>注意text不能以@开头。也就是不能@后还接一个@。</p>
+<h4 id="行内便签">行内便签</h4>
+<p>注意text不能以@开头。也就是不能@后还接一个@。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">&#123;% label primary @text %&#125;<br></code></pre></td></tr></table></figure>
-
 <span class="label label-primary">primary</span> <span class="label label-default">default</span> <span class="label label-info">info</span> <span class="label label-success">success</span> <span class="label label-warning">warning</span> <span class="label label-danger">danger</span>
 
                 

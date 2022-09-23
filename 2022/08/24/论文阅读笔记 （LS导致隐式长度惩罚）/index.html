@@ -246,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          1.9k 字
         
       </span>
     
@@ -257,7 +257,7 @@
         
         
         
-          23 分钟
+          22 分钟
         
       </span>
     
@@ -321,7 +321,8 @@
 <th>The Implicit Length Bias of Label Smoothing on Beam Search Decoding</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><strong>论文链接</strong></td>
 <td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2205.00659.pdf">https://arxiv.org/pdf/2205.00659.pdf</a></td>
 </tr>
@@ -341,9 +342,12 @@
 <td><strong>撰写人</strong></td>
 <td>C.Y.</td>
 </tr>
-</tbody></table>
-<h2 id="核心任务和思想"><a href="#核心任务和思想" class="headerlink" title="核心任务和思想"></a>核心任务和思想</h2><p>通过数学推导在理论上说明训练时采用标签平滑会隐式地导致beam search解码机器翻译任务时存在长度惩罚，使得解码倾向于给出较短的结果，且理论上，标签平滑的模型会使得解码的长度存在与输入无关的常数上界。作者在实验中也发现了上述现象，并提出了修正方法。</p>
-<h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><p>标签平滑是一种正则化防止过拟合的方法，它将独热的标签平滑为实数向量，计算方法如下：</p>
+</tbody>
+</table>
+<h2 id="核心任务和思想">核心任务和思想</h2>
+<p>通过数学推导在理论上说明训练时采用标签平滑会隐式地导致beam search解码机器翻译任务时存在长度惩罚，使得解码倾向于给出较短的结果，且理论上，标签平滑的模型会使得解码的长度存在与输入无关的常数上界。作者在实验中也发现了上述现象，并提出了修正方法。</p>
+<h2 id="背景知识">背景知识</h2>
+<p>标签平滑是一种正则化防止过拟合的方法，它将独热的标签平滑为实数向量，计算方法如下：</p>
 <p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjIzODc4ZjZjNzJmMTZmOTFmOWM5MmZhN2ZiMzA5ZWRfV2dEU1pQcGNGdWxVNXNjZk8yNVhYMmlNalVxcHdaMHBfVG9rZW46Ym94Y25sTktMRlFkSjdtV2tiaVBaOWlMUGtnXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>其中q是平滑前的概率向量（向量的维度为词表大小V，向量中每个元素代表对应索引的词的概率），它是独热的。α是超参数，一般取为0.1。平滑后，原来为1的元素会略微减小，原来为0的元素会略微增大。</p>
 <p>我们设模型给出的最后一层输出为向量q<code>，在充分训练后，q</code>可以视为模型给出的下一个时间步每个单词的概率，即有：</p>
@@ -357,32 +361,49 @@
 <p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjMzNjRiMTkwMmY2ZDc1NGI3ZmY4MWU4MmZmODlmNTNfTVJqUTVDRjRlRWZMWUNFWGozTTFJUTVTMDhOc1g5Z1VfVG9rZW46Ym94Y25MNlk4ZmVITmxDa3lEWjdFZFEwUmJqXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>两式比较，可以得到T有如此上界：</p>
 <p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=NWQxNWJiZjZkYjYxYTc3YzM4ZjM4ZDM2MjQ5YjVjMTdfdnJDSkxxcHI5b3VRMnFaWW9rMTFaNnhmbjhNZHA0SXFfVG9rZW46Ym94Y245eDdqMFlGNDQxdElSMkQweEN4RGllXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>通过上述的理论推导，将第一个公式逆过来，得到修正公式：</p>
+<h2 id="方法">方法</h2>
+<p>通过上述的理论推导，将第一个公式逆过来，得到修正公式：</p>
 <p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWUwMGJmNDk4YmM0MzlkMDliMzY4N2ExOTM3Yjc2MjZfN2Y4RmoyN2VRTUZtTDNEUkJ6RnN3WlFCNDNIOWIzdUxfVG9rZW46Ym94Y25UTHpMSEhsRWdGRERSODZpNE1PSkliXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>由于模型训练的结果不完全是概率，这样计算后概率值可能会超出[0, 1]，因此作者又增加了ReLU来避免这种情况。</p>
 <p>加上归一化，最终结果如下：</p>
 <p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=OGNjYjQ2MWIzNTY1YjI1YzE2ZmRkOTVjY2VkMDMxYjBfcHpzMzZrZzVyWGVtb1BtSXRjUm5odFdXSE9sRGw3RFBfVG9rZW46Ym94Y25pRzJURGRETjQ2czNHbTBXZjJwQ1J6XzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>其中δ&#x3D;α &#x2F; V 。</p>
+<p>其中δ=α / V 。</p>
 <p>作者使用修正后的概率值，使用beam search进行实验。</p>
-<p>作者将模型的 δ 设为  n &#x2F; V，其中n &#x3D; 0.1、1、100，同时也探究了beam size分别为1、4、8、25、100、200的结果。</p>
-<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><ul>
-<li><h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3></li>
-<li><p>WMT19 EnDe, EnCs, EnZh 和 WMT15 EnFr. </p>
+<p>作者将模型的 δ 设为  n / V，其中n = 0.1、1、100，同时也探究了beam size分别为1、4、8、25、100、200的结果。</p>
+<h2 id="实验">实验</h2>
+<ul>
+<li>
+<h3 id="数据集">数据集</h3>
 </li>
-<li><h3 id="评测指标"><a href="#评测指标" class="headerlink" title="评测指标"></a>评测指标</h3></li>
-<li><p>BLEU值</p>
+<li>
+<p>WMT19 EnDe, EnCs, EnZh 和 WMT15 EnFr.</p>
 </li>
-<li><p>翻译长度 &#x2F; 源句子长度</p>
+<li>
+<h3 id="评测指标">评测指标</h3>
 </li>
-<li><h3 id="基线方法"><a href="#基线方法" class="headerlink" title="基线方法"></a>基线方法</h3></li>
-<li><p>基于Transformer训练的机器翻译模型，没有标签平滑。</p>
+<li>
+<p>BLEU值</p>
 </li>
-<li><p>基于Transformer训练的机器翻译模型，采用α &#x3D; 0.1的标签平滑，但在解码时不采用上述偏差修正，即δ &#x3D; 0。</p>
+<li>
+<p>翻译长度 / 源句子长度</p>
 </li>
-<li><h3 id="主实验结果及分析"><a href="#主实验结果及分析" class="headerlink" title="主实验结果及分析"></a>主实验结果及分析</h3></li>
-<li><p>所有模型解码时不采用长度惩罚（因为这会使上述推导的T项被除去）</p>
+<li>
+<h3 id="基线方法">基线方法</h3>
 </li>
-<li><p>结果1：</p>
+<li>
+<p>基于Transformer训练的机器翻译模型，没有标签平滑。</p>
+</li>
+<li>
+<p>基于Transformer训练的机器翻译模型，采用α = 0.1的标签平滑，但在解码时不采用上述偏差修正，即δ = 0。</p>
+</li>
+<li>
+<h3 id="主实验结果及分析">主实验结果及分析</h3>
+</li>
+<li>
+<p>所有模型解码时不采用长度惩罚（因为这会使上述推导的T项被除去）</p>
+</li>
+<li>
+<p>结果1：</p>
 <ul>
 <li>在EnDe数据集上BLEU值与δ、beam size的关系如下：</li>
 </ul>
@@ -390,19 +411,23 @@
 </ul>
 <p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=MzI3NzhiMjVjOGI3M2JkM2U3ZWZmOTU2NjZjMzE1ODVfaGpoQ3dkSU5KdVRhMjBWUjQ4cDJkMU1yZ2NnSlRyMlJfVG9rZW46Ym94Y25aV1pVN1VISnBwSE1KbGFDTlU3SDZiXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
 <ul>
-<li><p>可以看到修正对贪心搜索没有影响，而随着k增大，修正的影响更大，在beam size &#x3D; 200时，修正在横轴范围内使得BLEU值持续增大。</p>
+<li>
+<p>可以看到修正对贪心搜索没有影响，而随着k增大，修正的影响更大，在beam size = 200时，修正在横轴范围内使得BLEU值持续增大。</p>
 </li>
-<li><p>结果2：</p>
+<li>
+<p>结果2：</p>
 <ul>
-<li>在EnDe数据集上，当beam size &#x3D; 200时，BLEU值与源句子长度，是否标签平滑、修正程度的关系如下：</li>
+<li>在EnDe数据集上，当beam size = 200时，BLEU值与源句子长度，是否标签平滑、修正程度的关系如下：</li>
 </ul>
 </li>
 </ul>
 <p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=MTA3MjE0ZDcyMDYwZjU0ZTg0ZThkYWE5YTdiZjUyZDFfamJvQlZQSXh1bkY3Tm5KUHZxYk9xc3U1QTJMc1RJZG5fVG9rZW46Ym94Y25sWGFOTHFzMzl1cmFGWU15cDhiVUdlXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
 <ul>
-<li><p>可以看到没有标签平滑的模型在较长查询中性能优于标签平滑模型。而修正后也能让较长查询的结果更好。</p>
+<li>
+<p>可以看到没有标签平滑的模型在较长查询中性能优于标签平滑模型。而修正后也能让较长查询的结果更好。</p>
 </li>
-<li><p>结果3：</p>
+<li>
+<p>结果3：</p>
 <ul>
 <li>在EnDe数据集上，长度比值和源句子长度、δ的关系如下：</li>
 </ul>
@@ -410,9 +435,11 @@
 </ul>
 <p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=NWQ0NDZkYjJiNzRhZjUzNDVkNmVjNTlkMmEyYzIyNWFfcDhnYllCQ0dsRGVwcTR3d0tUM1JmQVdXV3QyZGZxQk5fVG9rZW46Ym94Y25kVTFJWjc4aHp6UXI3dmcxaWtXUXFnXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
 <ul>
-<li><p>可以看到没有标签平滑、修正后的标签平滑均有利于生成更长的句子，且有利于更长的查询。</p>
+<li>
+<p>可以看到没有标签平滑、修正后的标签平滑均有利于生成更长的句子，且有利于更长的查询。</p>
 </li>
-<li><p>结果4：</p>
+<li>
+<p>结果4：</p>
 <ul>
 <li>不同数据集上的结果（BLEU值）：</li>
 </ul>
@@ -420,22 +447,30 @@
 </ul>
 <p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=NTZiMWIzZGFhZTA2YzQzOTkzNjdlNmI0YjkyNTY5MjRfY1ZyN0tuSTc1VGdkV3ptV2xLZkhwZ01zdzdiN2daY0JfVG9rZW46Ym94Y25GanoyWGg1T3hNRlNQVkZxd2lRYXNmXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
 <ul>
-<li><p>可以看到beam size为4时，δ &#x3D; 1 &#x2F; V是一个峰值，beam size为200时，随δ上升模型性能都有上升。这与预期相符。</p>
+<li>
+<p>可以看到beam size为4时，δ = 1 / V是一个峰值，beam size为200时，随δ上升模型性能都有上升。这与预期相符。</p>
 </li>
-<li><h3 id="副实验设置、结果、分析"><a href="#副实验设置、结果、分析" class="headerlink" title="副实验设置、结果、分析"></a>副实验设置、结果、分析</h3></li>
-<li><p>副实验主要探究修正后是否会让模型过度自信（因为设置标签平滑就是为了防止过拟合）。</p>
+<li>
+<h3 id="副实验设置、结果、分析">副实验设置、结果、分析</h3>
 </li>
-<li><p>数据集和模型：仍采用上述数据集和模型</p>
+<li>
+<p>副实验主要探究修正后是否会让模型过度自信（因为设置标签平滑就是为了防止过拟合）。</p>
 </li>
-<li><p>评测指标：Set-Level Calibration analysis。对于每个查询，将前 200 个beam搜索输出的预测概率相加，用 S 表示，并将参考句子包含在S中的实际频率进行比较，模型校准越好，两个数字越匹配。</p>
+<li>
+<p>数据集和模型：仍采用上述数据集和模型</p>
 </li>
-<li><p>结果如下：</p>
+<li>
+<p>评测指标：Set-Level Calibration analysis。对于每个查询，将前 200 个beam搜索输出的预测概率相加，用 S 表示，并将参考句子包含在S中的实际频率进行比较，模型校准越好，两个数字越匹配。</p>
+</li>
+<li>
+<p>结果如下：</p>
 </li>
 </ul>
 <p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=NGJhNDQyOWMxODY2MDkxNTIxZjQxYWQzNzVmMzRjZGNfYnEwZXFMMERYWUlrYm00bnM4YXI0M0xSek1YRWNVaTNfVG9rZW46Ym94Y25aN1dBVDZVYmdxNGV3Y2ZMWkw4WUFjXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>标签平滑且无修正的系统过于自信，而经过修正后可以非常匹配。</p>
-<h2 id="个人点评和启发"><a href="#个人点评和启发" class="headerlink" title="个人点评和启发"></a>个人点评和启发</h2><p>用理论推导出beam search解码中存在的问题，并通过实验验证。</p>
-<p>我认为最后合适的δ取1 &#x2F; V暗示着模型在其他地方还有系统误差（如果只是标签平滑带来的误差，那应该在0.1 &#x2F; V左右达到最佳）。</p>
+<h2 id="个人点评和启发">个人点评和启发</h2>
+<p>用理论推导出beam search解码中存在的问题，并通过实验验证。</p>
+<p>我认为最后合适的δ取1 / V暗示着模型在其他地方还有系统误差（如果只是标签平滑带来的误差，那应该在0.1 / V左右达到最佳）。</p>
 <p>如果是我来修正，根据理论用[0, 1]外的值截断更合理。因为ReLU解决了修正后小于0的概率修正为0的问题，但不会把修正后超过1的概率截断为1，用ReLU后的结果归一化就让人感觉怪怪的。不过由于修正后概率超过1的其实很少（至多有1个，至少有0个），所以应该不会特别影响实验结果。</p>
 
                 
