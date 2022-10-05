@@ -24,6 +24,8 @@
 <meta property="og:description" content="不知道是上课没认真听讲，还是老师和课件讲得实在烂，反正我是被课件和网上的介绍给弄得很糊涂。明明很简单的算法，搞什么花里胡哨的来糊弄人。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-10-04/0.png">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-10-04/2.png">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-10-04/3.png">
 <meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-10-04/1.png">
 <meta property="article:published_time" content="2022-10-04T13:13:47.000Z">
 <meta property="article:modified_time" content="2022-10-04T13:13:47.000Z">
@@ -236,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          792 字
         
       </span>
     
@@ -247,7 +249,7 @@
         
         
         
-          12 分钟
+          9 分钟
         
       </span>
     
@@ -316,20 +318,9 @@
 <p>-2：1110，2：0010，-5：1011。</p>
 <p>然后把乘数改动，每一位变成前一位减当前位，则成为：(-1) 1 0 (-1)</p>
 <p>然后直接相乘，-1时用-2的补码，1时用2的补码：</p>
-<p class='katex-block katex-error ' title='ParseError: KaTeX parse error: Expected &#039;EOF&#039;, got &#039;&amp;&#039; at position 1: &amp;̲0\ \ 0\ \ 1\ \ …'>&amp;0\ \ 0\ \ 1\ \ 0\\
-&amp;-1\ \ 1\ \ 0\ -1\\
-\hline
-&amp;1\ \ 1\ \ 1\ \ 0\\
-&amp;0\ \ 0\ \ 1\ \ 0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\\
-&amp;1\ \ 1\ \ 1\ \ 0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
-</p>
+<p><img src="/img/article_content/2022-10-04/2.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>记得在加之前补齐符号位</p>
-<p class='katex-block katex-error ' title='ParseError: KaTeX parse error: Expected &#039;EOF&#039;, got &#039;&amp;&#039; at position 1: &amp;̲1\ \ 1\ \ 1\ \ …'>&amp;1\ \ 1\ \ 1\ \ 1\ \ 1\ \ 1\ \ 0\\
-&amp;\ \ \ \ \ \ 0\ \ 0\ \ 0\ \ 1\ \ 0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\\
-&amp;\ \ \ \ \ \ \ \ \ \ 1\ \ 1\ \ 1\ \ 0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
-\hline
-&amp;1\ \ 1\ \ 1\ \ 0\ \ 1\ \ 1\ \ 0
-</p>
+<p><img src="/img/article_content/2022-10-04/3.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>结束。</p>
 <p>可以看到布斯算法的思想在这种呈现方式中展现得淋漓尽致，就是把两位合成为一位，减少计算量。</p>
 <p>可能有个bug就是在加到最后的时候溢出，此时要注意一下这个溢出会不会改变符号位，如果会应该多写几位。</p>
