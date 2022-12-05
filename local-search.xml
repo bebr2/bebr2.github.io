@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>因果推断导论笔记-Lecture10.5</title>
+    <link href="/2022/12/05/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%AF%BC%E8%AE%BA%E7%AC%94%E8%AE%B0-Lecture10.5/"/>
+    <url>/2022/12/05/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%AF%BC%E8%AE%BA%E7%AC%94%E8%AE%B0-Lecture10.5/</url>
+    
+    <content type="html"><![CDATA[<p>三条估计ACE的准则，在已知因果框架下。</p><span id="more"></span><h2 id="回顾">回顾</h2><p>Rubin框架下的ACE画成因果图：</p><p><img src="/img/article_content/2022-12-05/0.png" alt=""></p><p><img src="/img/article_content/2022-12-05/1.png" alt=""></p><p>遇到的问题，有的Z其实是没办法看不到的。</p><p>也就是说父节点如果不可度量、未知、维度太高，就是一个挑战</p><p>介绍两大法则：</p><h2 id="Backdoor-Criterion">Backdoor Criterion</h2><p><img src="/img/article_content/2022-12-05/2.png" alt="如果Z1未知"></p><p><img src="/img/article_content/2022-12-05/3.png" alt="思路就是阻断我们不想要的边"></p><p><img src="/img/article_content/2022-12-05/4.png" alt=""></p><p>需要打断虚假的边3，1、2已经打断了，不要碰。4的话不可能存在，因为有向无环图。</p><p>注意，第三条边，Y一定是碰撞点。</p><p>✔的是要保留的，是我们要研究的。</p><p>总之，我们要打断所有的<strong>后门路径</strong>。</p><p><img src="/img/article_content/2022-12-05/5.png" alt="Z不应该是X的后代"></p><p>只要满足后门准则，在干预世界中，Z2就是和X独立的。</p><p><img src="/img/article_content/2022-12-05/6.png" alt="上面是观测世界，下面是干预世界"></p><p><img src="/img/article_content/2022-12-05/7.png" alt="答案应该是后三个，选完我就后悔了（"></p><p>就是Z一定要打断，但是Z打断后X-E-Z-A-Y就通了，所以得选择E和A其中一个打断。</p><p><img src="/img/article_content/2022-12-05/8.png" alt="后门准则还能提供检验图是否正确的帮助"></p><h2 id="Front-door-Criterion">Front-door Criterion</h2><p><img src="/img/article_content/2022-12-05/9.png" alt=""></p><p>Z-&gt;Y的使用后门准则，X-&gt;Z的天然被Y阻断了</p><p><img src="/img/article_content/2022-12-05/10.png" alt="蓝色是因为Z的约束2，橘色是因为Z的约束3"></p><p><img src="/img/article_content/2022-12-05/11.png" alt=""></p><p><img src="/img/article_content/2022-12-05/12.png" alt="一个计算例子"></p><h2 id="General-Criterion">General Criterion</h2><p><img src="/img/article_content/2022-12-05/13.png" alt=""></p><p><img src="/img/article_content/2022-12-05/14.png" alt="hat是干预的意思"></p><p><img src="/img/article_content/2022-12-05/15.png" alt=""></p><p><img src="/img/article_content/2022-12-05/16.png" alt="直接简化，做不下去"></p><p><img src="/img/article_content/2022-12-05/17.png" alt="那就用全概率展开一下"></p><p><img src="/img/article_content/2022-12-05/18.png" alt=""></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>课程笔记</category>
+      
+      <category>因果推断导论</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>统计</tag>
+      
+      <tag>因果推断</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>因果推断导论笔记-Lecture10-Causal Graphical Models-Average Causal Effect</title>
     <link href="/2022/11/28/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%AF%BC%E8%AE%BA%E7%AC%94%E8%AE%B0-Lecture10-Causal%20Graphical%20Models-Average%20Causal%20Effect/"/>
     <url>/2022/11/28/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%AF%BC%E8%AE%BA%E7%AC%94%E8%AE%B0-Lecture10-Causal%20Graphical%20Models-Average%20Causal%20Effect/</url>
