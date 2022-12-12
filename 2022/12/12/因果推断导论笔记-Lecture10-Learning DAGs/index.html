@@ -16,43 +16,37 @@
   <meta name="author" content="BeBr2">
   <meta name="keywords" content="">
   
-    <meta name="description" content="三条估计ACE的准则，在已知因果框架下。">
+    <meta name="description" content="讨论的是学习贝叶斯网络，而不是因果的贝叶斯网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="因果推断导论笔记-Lecture10.5">
-<meta property="og:url" content="https://bebr2.github.io/2022/12/05/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%AF%BC%E8%AE%BA%E7%AC%94%E8%AE%B0-Lecture10.5/index.html">
+<meta property="og:title" content="因果推断导论笔记-Lecture10-Learning DAGs">
+<meta property="og:url" content="https://bebr2.github.io/2022/12/12/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%AF%BC%E8%AE%BA%E7%AC%94%E8%AE%B0-Lecture10-Learning%20DAGs/index.html">
 <meta property="og:site_name" content="BeBr2&#39;s Blog">
-<meta property="og:description" content="三条估计ACE的准则，在已知因果框架下。">
+<meta property="og:description" content="讨论的是学习贝叶斯网络，而不是因果的贝叶斯网络">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/0.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/1.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/2.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/3.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/4.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/5.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/6.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/7.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/8.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/9.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/10.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/11.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/12.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/13.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/14.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/15.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/16.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/17.png">
-<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-05/18.png">
-<meta property="article:published_time" content="2022-12-05T09:31:26.000Z">
-<meta property="article:modified_time" content="2022-12-05T09:31:26.000Z">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-12/0.png">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-12/1.png">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-12/2.png">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-12/3.png">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-12/4.png">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-12/5.png">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-12/6.png">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-12/7.png">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-12/8.png">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-12/9.png">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-12/10.png">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-12/11.png">
+<meta property="og:image" content="https://bebr2.github.io/img/article_content/2022-12-12/12.png">
+<meta property="article:published_time" content="2022-12-12T08:13:36.000Z">
+<meta property="article:modified_time" content="2022-12-12T08:13:36.000Z">
 <meta property="article:author" content="BeBr2">
 <meta property="article:tag" content="统计">
 <meta property="article:tag" content="因果推断">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://bebr2.github.io/img/article_content/2022-12-05/0.png">
+<meta name="twitter:image" content="https://bebr2.github.io/img/article_content/2022-12-12/0.png">
   
   
   
-  <title>因果推断导论笔记-Lecture10.5 - BeBr2&#39;s Blog</title>
+  <title>因果推断导论笔记-Lecture10-Learning DAGs - BeBr2&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -235,7 +229,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">因果推断导论笔记-Lecture10.5</span>
+            <span id="subtitle">因果推断导论笔记-Lecture10-Learning DAGs</span>
           
         </div>
 
@@ -246,8 +240,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-12-05 17:31" pubdate>
-          2022年12月5日 下午
+        <time datetime="2022-12-12 16:13" pubdate>
+          2022年12月12日 下午
         </time>
       </span>
     
@@ -258,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          334 字
+          466 字
         
       </span>
     
@@ -269,7 +263,7 @@
         
         
         
-          4 分钟
+          6 分钟
         
       </span>
     
@@ -321,47 +315,49 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">因果推断导论笔记-Lecture10.5</h1>
+            <h1 style="display: none">因果推断导论笔记-Lecture10-Learning DAGs</h1>
             
             
               <div class="markdown-body">
                 
-                <p>三条估计ACE的准则，在已知因果框架下。</p>
+                <p>讨论的是学习贝叶斯网络，而不是因果的贝叶斯网络</p>
 <span id="more"></span>
-<h2 id="回顾">回顾</h2>
-<p>Rubin框架下的ACE画成因果图：</p>
-<p><img src="/img/article_content/2022-12-05/0.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-05/1.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>遇到的问题，有的Z其实是没办法看不到的。</p>
-<p>也就是说父节点如果不可度量、未知、维度太高，就是一个挑战</p>
-<p>介绍两大法则：</p>
-<h2 id="Backdoor-Criterion">Backdoor Criterion</h2>
-<p><img src="/img/article_content/2022-12-05/2.png" srcset="/img/loading.gif" lazyload alt="如果Z1未知"></p>
-<p><img src="/img/article_content/2022-12-05/3.png" srcset="/img/loading.gif" lazyload alt="思路就是阻断我们不想要的边"></p>
-<p><img src="/img/article_content/2022-12-05/4.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>需要打断虚假的边3，1、2已经打断了，不要碰。4的话不可能存在，因为有向无环图。</p>
-<p>注意，第三条边，Y一定是碰撞点。</p>
-<p>✔的是要保留的，是我们要研究的。</p>
-<p>总之，我们要打断所有的<strong>后门路径</strong>。</p>
-<p><img src="/img/article_content/2022-12-05/5.png" srcset="/img/loading.gif" lazyload alt="Z不应该是X的后代"></p>
-<p>只要满足后门准则，在干预世界中，Z2就是和X独立的。</p>
-<p><img src="/img/article_content/2022-12-05/6.png" srcset="/img/loading.gif" lazyload alt="上面是观测世界，下面是干预世界"></p>
-<p><img src="/img/article_content/2022-12-05/7.png" srcset="/img/loading.gif" lazyload alt="答案应该是后三个，选完我就后悔了（"></p>
-<p>就是Z一定要打断，但是Z打断后X-E-Z-A-Y就通了，所以得选择E和A其中一个打断。</p>
-<p><img src="/img/article_content/2022-12-05/8.png" srcset="/img/loading.gif" lazyload alt="后门准则还能提供检验图是否正确的帮助"></p>
-<h2 id="Front-door-Criterion">Front-door Criterion</h2>
-<p><img src="/img/article_content/2022-12-05/9.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>Z-&gt;Y的使用后门准则，X-&gt;Z的天然被Y阻断了</p>
-<p><img src="/img/article_content/2022-12-05/10.png" srcset="/img/loading.gif" lazyload alt="蓝色是因为Z的约束2，橘色是因为Z的约束3"></p>
-<p><img src="/img/article_content/2022-12-05/11.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-05/12.png" srcset="/img/loading.gif" lazyload alt="一个计算例子"></p>
-<h2 id="General-Criterion">General Criterion</h2>
-<p><img src="/img/article_content/2022-12-05/13.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-05/14.png" srcset="/img/loading.gif" lazyload alt="hat是干预的意思"></p>
-<p><img src="/img/article_content/2022-12-05/15.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-05/16.png" srcset="/img/loading.gif" lazyload alt="直接简化，做不下去"></p>
-<p><img src="/img/article_content/2022-12-05/17.png" srcset="/img/loading.gif" lazyload alt="那就用全概率展开一下"></p>
-<p><img src="/img/article_content/2022-12-05/18.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="已知图结构的参数学习Parameter-Learning">已知图结构的参数学习Parameter Learning</h2>
+<p>以频率学派、离散型为例</p>
+<p><img src="/img/article_content/2022-12-12/0.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-12-12/1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>R的实现：</p>
+<p><img src="/img/article_content/2022-12-12/2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-12-12/3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="未知图结构的结构学习">未知图结构的结构学习</h2>
+<ol>
+<li>search-and-score method：定义一种打分方式（如（惩罚的）对数似然）。给不同的图结构打分。</li>
+<li>constraint-based method：用计算机算法搜索满足条件独立性的图</li>
+</ol>
+<h3 id="search-and-score-method的实例-HC">search-and-score method的实例 HC</h3>
+<p><img src="/img/article_content/2022-12-12/4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>用对数似然分数，容易过拟合，默认使用bic分数。</p>
+<h3 id="constraint-based-method的实例IC算法">constraint-based method的实例IC算法</h3>
+<p>算法的缺点是图模型硬性地依赖于条件独立性检验，容错率太低。</p>
+<p><img src="/img/article_content/2022-12-12/5.png" srcset="/img/loading.gif" lazyload alt="原则，不能产生V结构和有向环"></p>
+<p><img src="/img/article_content/2022-12-12/6.png" srcset="/img/loading.gif" lazyload alt="S是在{3,4,5}的子集中八种去选"></p>
+<p>分别每一对去检验：</p>
+<p><img src="/img/article_content/2022-12-12/7.png" srcset="/img/loading.gif" lazyload alt="生成骨架"></p>
+<p><img src="/img/article_content/2022-12-12/8.png" srcset="/img/loading.gif" lazyload alt="探测V结构，在没有边连接的两个点之间判断"></p>
+<p>1和4的条件独立集S中有2，所以1-2-4不是V结构。</p>
+<p>2和3的条件独立集S中没有4，所以2-4-3是V结构。</p>
+<p><img src="/img/article_content/2022-12-12/9.png" srcset="/img/loading.gif" lazyload alt="第3步要求没有新的V结构和有向环"></p>
+<blockquote>
+<p><img src="/img/article_content/2022-12-12/10.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>正确答案是C。2-&gt;3不是V结构，因为只有1和4之间没有边可能产生V结构。</p>
+<p>尝试一下就发现，3-&gt;2会一定导致新的有向环。而其他不能确定。</p>
+</blockquote>
+<h4 id="条件独立性检验">条件独立性检验</h4>
+<p><img src="/img/article_content/2022-12-12/11.png" srcset="/img/loading.gif" lazyload alt="似然比检验"></p>
+<p>更详细的信息见课件。</p>
+<h3 id="高斯图模型">高斯图模型</h3>
+<p>协方差对应的0是无条件独立性，而逆对应的0是条件独立性。</p>
+<p><img src="/img/article_content/2022-12-12/12.png" srcset="/img/loading.gif" lazyload alt="右下角第一个等价是因为多元正态的性质"></p>
 
                 
               </div>
@@ -416,8 +412,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>因果推断导论笔记-Lecture10.5</div>
-      <div>https://bebr2.github.io/2022/12/05/因果推断导论笔记-Lecture10.5/</div>
+      <div>因果推断导论笔记-Lecture10-Learning DAGs</div>
+      <div>https://bebr2.github.io/2022/12/12/因果推断导论笔记-Lecture10-Learning DAGs/</div>
     </div>
     <div class="license-meta">
       
@@ -429,7 +425,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年12月5日</div>
+          <div>2022年12月12日</div>
         </div>
       
       
@@ -465,18 +461,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/12/12/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%AF%BC%E8%AE%BA%E7%AC%94%E8%AE%B0-Lecture10-Learning%20DAGs/" title="因果推断导论笔记-Lecture10-Learning DAGs">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">因果推断导论笔记-Lecture10-Learning DAGs</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/28/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%AF%BC%E8%AE%BA%E7%AC%94%E8%AE%B0-Lecture10-Causal%20Graphical%20Models-Average%20Causal%20Effect/" title="因果推断导论笔记-Lecture10-Causal Graphical Models-Average Causal Effect">
-                        <span class="hidden-mobile">因果推断导论笔记-Lecture10-Causal Graphical Models-Average Causal Effect</span>
+                      <a href="/2022/12/05/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%AF%BC%E8%AE%BA%E7%AC%94%E8%AE%B0-Lecture10.5/" title="因果推断导论笔记-Lecture10.5">
+                        <span class="hidden-mobile">因果推断导论笔记-Lecture10.5</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
