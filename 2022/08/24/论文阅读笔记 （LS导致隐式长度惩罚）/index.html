@@ -7,6 +7,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="baidu-site-verification" content="codeva-E0C8MpujJZ" />
   <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
   <link rel="icon" href="/img/logo.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -19,7 +20,7 @@
     <meta name="description" content="通过数学推导在理论上说明训练时采用标签平滑会隐式地导致beam search解码机器翻译任务时存在长度惩罚，使得解码倾向于给出较短的结果，且理论上，标签平滑的模型会使得解码的长度存在与输入无关的常数上界。作者在实验中也发现了上述现象，并提出了修正方法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文阅读笔记 （LS导致隐式长度惩罚）">
-<meta property="og:url" content="https://bebr2.github.io/2022/08/24/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%20%EF%BC%88LS%E5%AF%BC%E8%87%B4%E9%9A%90%E5%BC%8F%E9%95%BF%E5%BA%A6%E6%83%A9%E7%BD%9A%EF%BC%89/index.html">
+<meta property="og:url" content="https://bebr2.com/2022/08/24/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%20%EF%BC%88LS%E5%AF%BC%E8%87%B4%E9%9A%90%E5%BC%8F%E9%95%BF%E5%BA%A6%E6%83%A9%E7%BD%9A%EF%BC%89/index.html">
 <meta property="og:site_name" content="BeBr2&#39;s Blog">
 <meta property="og:description" content="通过数学推导在理论上说明训练时采用标签平滑会隐式地导致beam search解码机器翻译任务时存在长度惩罚，使得解码倾向于给出较短的结果，且理论上，标签平滑的模型会使得解码的长度存在与输入无关的常数上界。作者在实验中也发现了上述现象，并提出了修正方法。">
 <meta property="og:locale" content="zh_CN">
@@ -88,7 +89,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"bebr2.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -531,7 +532,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>论文阅读笔记 （LS导致隐式长度惩罚）</div>
-      <div>https://bebr2.github.io/2022/08/24/论文阅读笔记 （LS导致隐式长度惩罚）/</div>
+      <div>https://bebr2.com/2022/08/24/论文阅读笔记 （LS导致隐式长度惩罚）/</div>
     </div>
     <div class="license-meta">
       
