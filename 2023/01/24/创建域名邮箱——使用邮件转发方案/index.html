@@ -17,61 +17,25 @@
   <meta name="author" content="BeBr2">
   <meta name="keywords" content="">
   
-    <meta name="description" content="工具变量的方法。">
+    <meta name="description" content="有了域名如何创建专属的域名邮箱？能搜到的方法大部分太老或者不实用，或者不是免费的。这里给出我这两天尝试后的解决方案，绝对免费，并且是收发双向的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="因果推断导论笔记-Lecture12-Randomized Experiments with Noncompliance-Instrumental Variable Method">
-<meta property="og:url" content="https://bebr2.com/2022/12/12/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%AF%BC%E8%AE%BA%E7%AC%94%E8%AE%B0-Lecture12-Randomized%20Experiments%20with%20Noncompliance-Instrumental%20Variable%20Method/index.html">
+<meta property="og:title" content="创建域名邮箱——使用邮件转发方案">
+<meta property="og:url" content="https://bebr2.com/2023/01/24/%E5%88%9B%E5%BB%BA%E5%9F%9F%E5%90%8D%E9%82%AE%E7%AE%B1%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8%E9%82%AE%E4%BB%B6%E8%BD%AC%E5%8F%91%E6%96%B9%E6%A1%88/index.html">
 <meta property="og:site_name" content="BeBr2&#39;s Blog">
-<meta property="og:description" content="工具变量的方法。">
+<meta property="og:description" content="有了域名如何创建专属的域名邮箱？能搜到的方法大部分太老或者不实用，或者不是免费的。这里给出我这两天尝试后的解决方案，绝对免费，并且是收发双向的。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/13.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/14.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/15.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/16.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/17.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/18.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/19.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/20.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/21.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/22.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/23.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/24.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/25.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/26.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/27.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/28.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/29.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/30.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/31.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/32.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/33.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/34.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/35.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/36.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/37.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/38.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/39.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/40.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/41.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/42.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/43.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/44.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/45.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/46.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/47.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/48.png">
-<meta property="og:image" content="https://bebr2.com/img/article_content/2022-12-19/49.png">
-<meta property="article:published_time" content="2022-12-12T09:55:59.000Z">
-<meta property="article:modified_time" content="2022-12-12T09:55:59.000Z">
+<meta property="og:image" content="https://bebr2.com/img/article_content/2023-01-24/0.png">
+<meta property="og:image" content="https://bebr2.com/img/article_content/2023-01-24/1.png">
+<meta property="article:published_time" content="2023-01-24T08:53:44.000Z">
+<meta property="article:modified_time" content="2023-01-24T08:53:44.000Z">
 <meta property="article:author" content="BeBr2">
-<meta property="article:tag" content="统计">
-<meta property="article:tag" content="因果推断">
+<meta property="article:tag" content="域名相关">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://bebr2.com/img/article_content/2022-12-19/13.png">
+<meta name="twitter:image" content="https://bebr2.com/img/article_content/2023-01-24/0.png">
   
   
   
-  <title>因果推断导论笔记-Lecture12-Randomized Experiments with Noncompliance-Instrumental Variable Method - BeBr2&#39;s Blog</title>
+  <title>创建域名邮箱——使用邮件转发方案 - BeBr2&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -82,8 +46,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.6/katex.min.css" />
 
 
 
@@ -282,7 +244,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">因果推断导论笔记-Lecture12-Randomized Experiments with Noncompliance-Instrumental Variable Method</span>
+            <span id="subtitle">创建域名邮箱——使用邮件转发方案</span>
           
         </div>
 
@@ -293,8 +255,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-12-12 17:55" pubdate>
-          2022年12月12日 下午
+        <time datetime="2023-01-24 16:53" pubdate>
+          2023年1月24日 下午
         </time>
       </span>
     
@@ -305,7 +267,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          332 字
+          1.1k 字
         
       </span>
     
@@ -316,7 +278,7 @@
         
         
         
-          4 分钟
+          13 分钟
         
       </span>
     
@@ -368,66 +330,56 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">因果推断导论笔记-Lecture12-Randomized Experiments with Noncompliance-Instrumental Variable Method</h1>
+            <h1 style="display: none">创建域名邮箱——使用邮件转发方案</h1>
             
             
               <div class="markdown-body">
                 
-                <p>工具变量的方法。</p>
+                <p>有了域名如何创建专属的域名邮箱？能搜到的方法大部分太老或者不实用，或者不是免费的。这里给出我这两天尝试后的解决方案，绝对免费，并且是收发双向的。</p>
 <span id="more"></span>
-<h2 id="简介">简介</h2>
-<p><img src="/img/article_content/2022-12-19/13.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/14.png" srcset="/img/loading.gif" lazyload alt="不依从现象，明明让他吃药，因为某些原因没有吃药"></p>
-<p><img src="/img/article_content/2022-12-19/15.png" srcset="/img/loading.gif" lazyload alt="鼓励性设计：告诉他分配了Z；双盲实验：医生不知道病人的情况且病人也不知道是否分配药物"></p>
-<h2 id="3-naive-solutions">3 naive solutions</h2>
-<p><img src="/img/article_content/2022-12-19/16.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/17.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/18.png" srcset="/img/loading.gif" lazyload alt="D(0)表示D(Z=0)"></p>
-<p><img src="/img/article_content/2022-12-19/19.png" srcset="/img/loading.gif" lazyload alt="这种方法只能得到意向吃药的效果，而不是真正吃药D的效果"></p>
-<p><img src="/img/article_content/2022-12-19/20.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/21.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>都无法消除不依从性。</p>
-<h2 id="Instrumental-Variable工具变量法">Instrumental Variable工具变量法</h2>
-<p><img src="/img/article_content/2022-12-19/22.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/23.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/24.png" srcset="/img/loading.gif" lazyload alt="得到的结果和Way1是相同的"></p>
-<p><img src="/img/article_content/2022-12-19/25.png" srcset="/img/loading.gif" lazyload alt="两阶段估计"></p>
-<p><img src="/img/article_content/2022-12-19/26.png" srcset="/img/loading.gif" lazyload alt="假设是比较强的，能不能放宽？"></p>
-<h2 id="回到Rubin框架">回到Rubin框架</h2>
-<p><img src="/img/article_content/2022-12-19/27.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/28.png" srcset="/img/loading.gif" lazyload alt="增加一个假设，双盲实验保证了Z不会直接影响Y"></p>
-<p><img src="/img/article_content/2022-12-19/29.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/30.png" srcset="/img/loading.gif" lazyload alt="个体自带的属性：依从者、叛逆者、吃药者、不吃药者"></p>
-<p><img src="/img/article_content/2022-12-19/31.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/32.png" srcset="/img/loading.gif" lazyload alt="在具体的例子中，因为让他不吃药，他不可能吃药，所以少了两种人。One-sided Noncompliance"></p>
-<p>因此观测到的就只有三种了：</p>
-<p><img src="/img/article_content/2022-12-19/33.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>能估计下面这两种因果作用（ITT代表意愿上的1）：</p>
-<p><img src="/img/article_content/2022-12-19/34.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/35.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/36.png" srcset="/img/loading.gif" lazyload alt="在单边不依从的假设下，可以求出依从者的因果作用"></p>
-<p>估计可以用Neyman方法估计。</p>
-<p><img src="/img/article_content/2022-12-19/37.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/38.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/39.png" srcset="/img/loading.gif" lazyload alt="因为Z=0，W一定为0"></p>
-<p>双边不依从的情况：</p>
-<p><img src="/img/article_content/2022-12-19/40.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/41.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/42.png" srcset="/img/loading.gif" lazyload alt="；"></p>
-<p>所以需要新增单调性假设：<strong>不存在叛逆者</strong>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>≥</mo><msub><mi>W</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W_i(1)≥W_i(0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">0</span><span class="mclose">)</span></span></span></span>：</p>
-<p><img src="/img/article_content/2022-12-19/43.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/44.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/45.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h2 id="总结">总结</h2>
-<p><img src="/img/article_content/2022-12-19/46.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-12-19/47.png" srcset="/img/loading.gif" lazyload alt="第二个限制使得always-takers和never-takers可以忽略；第三个限制是因为做除法在分母"></p>
-<p>以上是工具变量的严格定义。</p>
-<h3 id="和经济学IV的区别">和经济学IV的区别</h3>
-<p>假设变松，估计的是依从者的因果作用。</p>
-<p><img src="/img/article_content/2022-12-19/48.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>Per protocol analysis为什么不行？</p>
-<p>Z=0的情况是Never taker和Complier，Z=1的情况是Always taker和Complier。所以这个差是混合的因果作用，没有实际意义。</p>
-<p><img src="/img/article_content/2022-12-19/49.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="失败的尝试">失败的尝试</h2>
+<h3 id="腾讯企业邮箱">腾讯企业邮箱</h3>
+<p>我在半年前买了域名后就尝试这种方式了，因为网上大都推荐这种方式。</p>
+<p>首先很多人在说QQ的域名邮箱，但是QQ邮箱前几年已经关停这种服务了。然后就是企业邮箱，短板太太太明显了，添加用户有上限，然后每个用户都需要绑定微信号（真的恶心老百姓），微信里还各种推送消息。还有其他各种原因让我放弃了这种方式。</p>
+<h3 id="搭建邮件服务器">搭建邮件服务器</h3>
+<p>放弃，一没钱，二是感觉很麻烦，网上也有一键安装的源码，但感觉要同时处理邮件和服务器的安全很麻烦。</p>
+<h3 id="Cloudns">Cloudns</h3>
+<p>这两天我想到了邮件转发的方法，所以就去搜索了这方面的服务商。</p>
+<p>欧洲的服务商<a target="_blank" rel="noopener" href="https://www.cloudns.net/">Cloudns</a>，免费版支持一个域名的一个邮件转发，你只能选择一个别名，或者是所有通配。而且也没找到他的隐私政策。当然Cloudns比下面方法的优点是，重定向的邮箱是记录在自己的服务器的（我猜的），所以免费的也可以防止邮箱被查到。</p>
+<h2 id="最终的尝试">最终的尝试</h2>
+<p>使用ForwardEmail，是开源在github的一个项目（如果自己有服务器可以自己安装）。</p>
+<p>一些Q&amp;A详见https://forwardemail.net/zh/faq，也有详细的配置过程。下面写自己的使用心得（仅针对免费版）。</p>
+<h3 id="收邮件">收邮件</h3>
+<p>优点：</p>
+<ol>
+<li>可以有无限多的别名，每一个可以重定向到10个以内的邮箱。且配置简单。</li>
+<li>开源项目，有完善的隐私政策。</li>
+<li>支持正则表达式、webhook等功能。</li>
+<li>有spf反垃圾服务。</li>
+<li>QQ邮箱、Gmail的邮件已测试，能够被转发。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>
+<p>有自己的拒绝列表和黑名单，所以清华邮箱发出去的会被退回来。。。。</p>
+</li>
+<li>
+<p>两个邮件间隔太短，可能有一封会收不到。</p>
+</li>
+<li>
+<p>别人可以通过DNS记录看到你的重定向地址。因为使用TXT记录，这是明文的，例如在windows的cmd下输入：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">nslookup <span class="hljs-attribute">-qt</span>=txt 网址<br></code></pre></td></tr></table></figure>
+<p><img src="/img/article_content/2023-01-24/0.png" srcset="/img/loading.gif" lazyload alt="涂红的就是我的重定向邮箱，虽然这里打码没什么用就是了"></p>
+</li>
+</ol>
+<p>总之，我觉得免费版的服务就到头了，自己测试后确实觉得已经很不错了。</p>
+<h3 id="发邮件">发邮件</h3>
+<p>如何在发邮件时也用自己的别名呢？</p>
+<p>outlook邮箱有这项服务，详见<a target="_blank" rel="noopener" href="https://forwardemail.net/zh/faq#can-i-send-mail-as-in-outlook-with-this">常见问题-outlook发送邮件 | Forward Email</a>。</p>
+<p>大概流程是需要在DNS配置中为Outlook设置SPF记录TXT记录，然后outlook的设置里搜索别名，点击进入下面界面：</p>
+<p><img src="/img/article_content/2023-01-24/1.png" srcset="/img/loading.gif" lazyload alt="在设置里修改默认发件地址"></p>
+<p>先点击<strong>管理或选择主别名</strong>，可以添加别名，outlook会发一封邮件验证你是这个邮箱的主人，之后就返回到上图界面设置默认发件地址就行了。</p>
+<p>在华为手机的邮箱就能通过outlook登录（可以使用别名登录），然后发送的时候自动就使用别名，这样就实现了收发都是域名邮箱的功能。（缺点是：发送的时候，有的邮箱会看到使用某某outlook邮箱代发，有的简略没有显示，这确实没办法了）</p>
 
                 
               </div>
@@ -446,15 +398,8 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="category-chain-item">课程笔记</a>
+  <a href="/categories/%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/" class="category-chain-item">实用技巧</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%AF%BC%E8%AE%BA/" class="category-chain-item">因果推断导论</a>
-  
-  
-
   
 
       </span>
@@ -468,9 +413,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E7%BB%9F%E8%AE%A1/">#统计</a>
-      
-        <a href="/tags/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/">#因果推断</a>
+        <a href="/tags/%E5%9F%9F%E5%90%8D%E7%9B%B8%E5%85%B3/">#域名相关</a>
       
     </div>
   
@@ -482,8 +425,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>因果推断导论笔记-Lecture12-Randomized Experiments with Noncompliance-Instrumental Variable Method</div>
-      <div>https://bebr2.com/2022/12/12/因果推断导论笔记-Lecture12-Randomized Experiments with Noncompliance-Instrumental Variable Method/</div>
+      <div>创建域名邮箱——使用邮件转发方案</div>
+      <div>https://bebr2.com/2023/01/24/创建域名邮箱——使用邮件转发方案/</div>
     </div>
     <div class="license-meta">
       
@@ -495,7 +438,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年12月12日</div>
+          <div>2023年1月24日</div>
         </div>
       
       
@@ -531,18 +474,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/01/24/%E5%88%9B%E5%BB%BA%E5%9F%9F%E5%90%8D%E9%82%AE%E7%AE%B1%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8%E9%82%AE%E4%BB%B6%E8%BD%AC%E5%8F%91%E6%96%B9%E6%A1%88/" title="创建域名邮箱——使用邮件转发方案">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">创建域名邮箱——使用邮件转发方案</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/12/12/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%AF%BC%E8%AE%BA%E7%AC%94%E8%AE%B0-Lecture10-Learning%20DAGs/" title="因果推断导论笔记-Lecture10-Learning DAGs">
-                        <span class="hidden-mobile">因果推断导论笔记-Lecture10-Learning DAGs</span>
+                      <a href="/2022/12/12/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%AF%BC%E8%AE%BA%E7%AC%94%E8%AE%B0-Lecture12-Randomized%20Experiments%20with%20Noncompliance-Instrumental%20Variable%20Method/" title="因果推断导论笔记-Lecture12-Randomized Experiments with Noncompliance-Instrumental Variable Method">
+                        <span class="hidden-mobile">因果推断导论笔记-Lecture12-Randomized Experiments with Noncompliance-Instrumental Variable Method</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -586,11 +523,6 @@
 
 
   
-
-
-  
-  
-
 
 
 
