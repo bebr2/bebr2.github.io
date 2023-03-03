@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>仓库介绍-THU因果推断导论大作业</title>
+    <link href="/2023/03/03/%E4%BB%93%E5%BA%93%E4%BB%8B%E7%BB%8D-THU%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%AF%BC%E8%AE%BA%E5%A4%A7%E4%BD%9C%E4%B8%9A/"/>
+    <url>/2023/03/03/%E4%BB%93%E5%BA%93%E4%BB%8B%E7%BB%8D-THU%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%AF%BC%E8%AE%BA%E5%A4%A7%E4%BD%9C%E4%B8%9A/</url>
+    
+    <content type="html"><![CDATA[<p>稍微整理了一下2022秋季学期我的因果推断导论大作业，也算是给课程一个总结。虽然这门课记了pf，但是写这个大作业是选课之初就希望自己能完成的一个主题，所以还是认认真真花了三四天的时间写完了！</p><span id="more"></span><h2 id="仓库">仓库</h2><p><a href="https://github.com/bebr2/THUCasualInferenceHW-2022">bebr2/THUCasualInferenceHW-2022: Coursework of Casual Inference course in THU, 2022 Fall. (github.com)</a></p><p>包含代码实现，虽然代码写得很丑陋就是了（</p><p>对于后来学习这门课的同学，可以自选题目的同时参考本文的研究思路，禁止抄袭。</p><h2 id="简介（同Github-README）">简介（同Github README）</h2><p>本仓库是2022年秋季学期清华大学《因果推断导论》课程中，本人的大作业实现。</p><h3 id="研究过程">研究过程</h3><p>本文主要研究废除死刑对凶杀案数量的影响，研究对象是2010年和2014年的美国各州。本人首先在<a href="www.kaggle.com">Kaggle平台</a>和<a href="www.census.gov">美国人口普查局网站</a>收集了美国各州的凶杀案数据，以及各州的经济、人口、种族、教育、医疗等数据，同时在维基百科收集了废死州和未废死州的分布。由于数据缺失等原因，最后选取了2010年和2014年的美国各州为个体。</p><p>简单线性回归发现，废死 ~ 凶杀案数量几乎没有任何关系，但同时观察数据分布可以看出废死和非废死州之间的协变量非常不均衡。</p><p>由于数据是观察性数据，选取Rubin框架进行研究，并作出一些假设。接着用逻辑回归的方法平衡倾向得分，使用trimming的方法对得到的倾向得分进行处理，接着采用无放回匹配和有放回匹配的方法分别探究，同时也研究了是否加入协变量修正的影响。</p><p>最后，对于上述方法，得到的4个平均因果作用都非常接近于0，方差也在合理范围内，因此本文得出的结论是废死对凶杀案数量没有影响。</p><p>研究细节均在正文展示。</p><h3 id="免责声明">免责声明</h3><p>本文结论对相关学术领域无任何正面或负面的结果，本文无意传达任何地域、种族歧视或其他不良内容。仅供因果推断的入门学习者的实践参考。</p><p>关于本文的研究局限性，已经在正文文末提出，这里不再赘述。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>我的Github仓库介绍</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>因果推断</tag>
+      
+      <tag>统计</tag>
+      
+      <tag>我的Github仓库</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>论文阅读笔记 第一阶段检索综述-下篇</title>
     <link href="/2023/01/29/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%20%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%E6%A3%80%E7%B4%A2%E7%BB%BC%E8%BF%B0-%E4%B8%8B%E7%AF%87/"/>
     <url>/2023/01/29/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%20%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%E6%A3%80%E7%B4%A2%E7%BB%BC%E8%BF%B0-%E4%B8%8B%E7%AF%87/</url>
@@ -109,9 +138,9 @@
     
     <tags>
       
-      <tag>统计</tag>
-      
       <tag>因果推断</tag>
+      
+      <tag>统计</tag>
       
     </tags>
     
@@ -138,9 +167,9 @@
     
     <tags>
       
-      <tag>统计</tag>
-      
       <tag>因果推断</tag>
+      
+      <tag>统计</tag>
       
     </tags>
     
@@ -167,9 +196,9 @@
     
     <tags>
       
-      <tag>统计</tag>
-      
       <tag>因果推断</tag>
+      
+      <tag>统计</tag>
       
     </tags>
     
@@ -196,9 +225,9 @@
     
     <tags>
       
-      <tag>统计</tag>
-      
       <tag>因果推断</tag>
+      
+      <tag>统计</tag>
       
     </tags>
     
@@ -225,9 +254,9 @@
     
     <tags>
       
-      <tag>统计</tag>
-      
       <tag>因果推断</tag>
+      
+      <tag>统计</tag>
       
     </tags>
     
@@ -287,9 +316,9 @@
     
     <tags>
       
-      <tag>统计</tag>
-      
       <tag>因果推断</tag>
+      
+      <tag>统计</tag>
       
     </tags>
     
@@ -316,9 +345,9 @@
     
     <tags>
       
-      <tag>统计</tag>
-      
       <tag>因果推断</tag>
+      
+      <tag>统计</tag>
       
     </tags>
     
@@ -345,9 +374,9 @@
     
     <tags>
       
-      <tag>统计</tag>
-      
       <tag>因果推断</tag>
+      
+      <tag>统计</tag>
       
     </tags>
     
@@ -374,9 +403,9 @@
     
     <tags>
       
-      <tag>统计</tag>
-      
       <tag>因果推断</tag>
+      
+      <tag>统计</tag>
       
     </tags>
     
@@ -403,9 +432,9 @@
     
     <tags>
       
-      <tag>统计</tag>
-      
       <tag>因果推断</tag>
+      
+      <tag>统计</tag>
       
     </tags>
     
@@ -432,9 +461,9 @@
     
     <tags>
       
-      <tag>统计</tag>
-      
       <tag>因果推断</tag>
+      
+      <tag>统计</tag>
       
     </tags>
     
@@ -488,9 +517,9 @@
     
     <tags>
       
-      <tag>统计</tag>
-      
       <tag>因果推断</tag>
+      
+      <tag>统计</tag>
       
     </tags>
     
@@ -517,9 +546,9 @@
     
     <tags>
       
-      <tag>统计</tag>
-      
       <tag>因果推断</tag>
+      
+      <tag>统计</tag>
       
     </tags>
     
