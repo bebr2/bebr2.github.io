@@ -1,3 +1,6 @@
+body:hover {
+    cursor: "/img/cur1.cur", auto;
+}
 a:hover, button:hover, i:hover {
-    cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto;
+    cursor: "/img/cur2.cur", auto!important;
 }
