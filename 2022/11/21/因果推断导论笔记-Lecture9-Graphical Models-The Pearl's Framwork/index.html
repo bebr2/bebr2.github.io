@@ -98,7 +98,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -361,7 +361,7 @@
 <h2 id="Rubin框架的局限">Rubin框架的局限</h2>
 <p>X和Y都是明确的，但在很多例子中协变量、处理和结果可能都是模糊甚至是未知的。</p>
 <h2 id="Pearl框架">Pearl框架</h2>
-<p><img src="/img/article_content/2022-11-21/0.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-21/0.png" alt=""></p>
 <p>模型三要素：Graphical model（图模型）、Probability（概率）、Causality（因果）</p>
 <h3 id="图模型">图模型</h3>
 <p>就是离散数学的东西。</p>
@@ -371,7 +371,7 @@
 <p>(Un)Directed edge、Directed graph（所有边都有向，所有边退化为无向称为骨架skeleton）</p>
 <p>Directed acyclic graph(DAG)：有向无环图</p>
 <p>注意这种也是DAG，环要看方向：</p>
-<p><img src="/img/article_content/2022-11-21/1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-21/1.png" alt=""></p>
 <p>descendants后代，spouses配偶</p>
 <h3 id="贝叶斯网络">贝叶斯网络</h3>
 <p>DAG + 概率。</p>
@@ -380,38 +380,38 @@
 <p>贝叶斯网络 = PGM with 有向无环图</p>
 <p>Rubin框架下只能从因认识结果。</p>
 <p>引入条件独立性，减少参数</p>
-<p><img src="/img/article_content/2022-11-21/2.jpg" srcset="/img/loading.gif" lazyload alt="马氏父节点集"></p>
+<p><img src="/img/article_content/2022-11-21/2.jpg" alt="马氏父节点集"></p>
 <p><strong>P -&gt;拆分-&gt;G：</strong></p>
-<p><img src="/img/article_content/2022-11-21/3.jpg" srcset="/img/loading.gif" lazyload alt="条件独立性可以用常识等得到，例如是否滑只和是否湿有关"></p>
+<p><img src="/img/article_content/2022-11-21/3.jpg" alt="条件独立性可以用常识等得到，例如是否滑只和是否湿有关"></p>
 <p>注意图和拆分的顺序有关，例如<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><msub><mi>X</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>X</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>X</mi><mn>3</mn></msub><mo separator="true">,</mo><msub><mi>X</mi><mn>4</mn></msub><mo separator="true">,</mo><msub><mi>X</mi><mn>5</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(X_2,X_1,X_3,X_4,X_5)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>拆出来是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><msub><mi>X</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(X_2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>在前。</p>
 <p>蕴含同样的条件独立性，<strong>图并不是唯一的</strong>。</p>
 <p>马氏相容性：</p>
-<p><img src="/img/article_content/2022-11-21/4.png" srcset="/img/loading.gif" lazyload alt="说的是P和G的关系"></p>
+<p><img src="/img/article_content/2022-11-21/4.png" alt="说的是P和G的关系"></p>
 <p><strong>G -&gt;拆分-&gt;条件独立性：</strong></p>
 <p>先找没有父节点的，是根节点，根节点不是条件概率。再找受它们影响的节点。</p>
-<p><img src="/img/article_content/2022-11-21/5.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-11-21/6.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-21/5.png" alt=""></p>
+<p><img src="/img/article_content/2022-11-21/6.png" alt=""></p>
 <p>因为图只展示了定性的条件独立性，而概率还需要定量的信息。</p>
 <h3 id="d-separation">d-separation</h3>
 <p>如何从图中直接读出条件独立性？</p>
-<p><img src="/img/article_content/2022-11-21/7.png" srcset="/img/loading.gif" lazyload alt="链式法则"></p>
-<p><img src="/img/article_content/2022-11-21/8.png" srcset="/img/loading.gif" lazyload alt="叉式法则"></p>
+<p><img src="/img/article_content/2022-11-21/7.png" alt="链式法则"></p>
+<p><img src="/img/article_content/2022-11-21/8.png" alt="叉式法则"></p>
 <p>叉式法则本质上是simpson悖论，Y就是混杂的信息。</p>
 <p>V结构，Y称为碰撞点，条件是X和Z不能存在边：</p>
-<p><img src="/img/article_content/2022-11-21/9.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-21/9.jpg" alt=""></p>
 <p>此时边缘独立，但条件却不独立了。</p>
 <p>连续抛均匀硬币两次，X为第一次为正面，Z为第二次为正面，显然X和Z独立，定义Y为两次抛掷是否一样（一样为1），此时给定Y = 1，P(X=1, Z=1 | Y=1) = P(X=1 | Y=1) = P(Z=1 | Y=1) = 1/2说明 X|Y 和 Z|Y 不独立。</p>
 <p>两个点下，block表示X和Z就独立了，信息不流通了。</p>
-<p><img src="/img/article_content/2022-11-21/10.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-21/10.png" alt=""></p>
 <p>多个点的时候，链式或叉式给其中某或某几个点就可以，但不能给定V结构的碰撞点，如果非要给定碰撞点，要用其他的把那条路阻断。（给定collider的后代也不行）</p>
 <p>也就是要把所有路都封死。</p>
-<p><img src="/img/article_content/2022-11-21/11.png" srcset="/img/loading.gif" lazyload alt="最下面是G和H"></p>
-<p><img src="/img/article_content/2022-11-21/12.png" srcset="/img/loading.gif" lazyload alt="做错了，答案是C"></p>
+<p><img src="/img/article_content/2022-11-21/11.png" alt="最下面是G和H"></p>
+<p><img src="/img/article_content/2022-11-21/12.png" alt="做错了，答案是C"></p>
 <p>这道题问的是哪些对变量可以变成独立*（老是觉得这种判断题真的很不严谨。。。）*</p>
 <p>做错好像是因为没看到conditional是括号（也不全是，不然应该选2）。</p>
 <p>先通过少了哪两个点的边来关心这两个变量，看看能不能被阻断。</p>
 <p>对于点组之间，也是类似的：</p>
-<p><img src="/img/article_content/2022-11-21/13.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-21/13.png" alt=""></p>
 
                 
               </div>
@@ -683,12 +683,6 @@
 
 
 
-
-  
-    
-      <script  src="/js/img-lazyload.js" ></script>
-    
-  
 
 
 

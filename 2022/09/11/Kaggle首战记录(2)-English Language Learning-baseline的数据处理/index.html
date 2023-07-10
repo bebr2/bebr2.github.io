@@ -83,7 +83,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -345,7 +345,7 @@
 <span id="more"></span>
 <h2 id="EDA">EDA</h2>
 <p>和统计一样，上来得先做一个数据探索EDA。</p>
-<p><img src="/img/article_content/2022-09-11/0.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-09-11/0.png" alt=""></p>
 <p>瞄一下数据，大概是成正态分布，这比较符合常识，因此可以说不太存在数据不平衡的现象。</p>
 <p>注意这里的数据不平衡是指训练集和真实分布的差距，而不是score值的相互比较。</p>
 <p>数据共3911行，说实话不多，因此也比较依赖之后的数据增强。</p>
@@ -366,7 +366,7 @@
 <p>也就是有的居然达到了52段！实在是丧心病狂，看一下原文：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(data[<span class="hljs-string">&#x27;full_text&#x27;</span>][paragraph_count_df.idxmax()])<br></code></pre></td></tr></table></figure>
 <p>输出如下，只能说很会玩：</p>
-<p><img src="/img/article_content/2022-09-11/1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-09-11/1.png" alt=""></p>
 <p>本来我还进行了段落中最大token数的探索，但现在感觉没必要，无论探索结果如何，你都不可能仅仅把段落数作为唯一切割依据。</p>
 <h2 id="数据处理">数据处理</h2>
 <p>数据处理的方法就呼之欲出了，对于一条长文本，先转化为token，然后不断二分切割，当然这个二分只是“类”二分，最好按段落切割，其次的分割标准是句号。然后我发现有的作文连句号都没有，因此还加上了逗号和空格。</p>
@@ -653,12 +653,6 @@
 
 
 
-
-  
-    
-      <script  src="/js/img-lazyload.js" ></script>
-    
-  
 
 
 

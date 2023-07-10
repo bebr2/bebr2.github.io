@@ -25,7 +25,7 @@
 <meta property="og:description" content="一个零表达欲的人，一个无趣的灵魂————吗？ 千百个无眠的深夜里，我经常这么问自己。 有人说被误解是表达者的宿命。 所以啊，我更愿意写给自己看。 就读于THU-CS，梦想是努力成为一个人。 你点击了这个无聊的网站，也许你是想到了生活中有那么一个无趣的人，也许你根本不认识我，只是在无聊的时候输入了这个网址，总之感谢你的想念。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-22T16:06:10.000Z">
-<meta property="article:modified_time" content="2023-07-02T09:00:36.293Z">
+<meta property="article:modified_time" content="2023-07-10T06:57:52.771Z">
 <meta property="article:author" content="BeBr2">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -79,7 +79,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -385,7 +385,7 @@ container.style.display = "none";
       .then(response => response.json())
       .then(data => {
         data.forEach(repository => {
-        if (repository.name != "THU-" && repository.name != "bebr2.github.io" && repository.name != "oop")
+        if (repository.name != "THU-" && repository.name != "bebr2.github.io" && repository.name != "oop" && repository.name != "BlogComment" && respository.name != "GLaDOS-checkin")
           container.appendChild(createGitHubRepositoryCard(repository));
         });
         container.style.flexWrap = 'wrap';
@@ -627,12 +627,6 @@ container.style.display = "none";
 
 
 
-
-  
-    
-      <script  src="/js/img-lazyload.js" ></script>
-    
-  
 
 
 

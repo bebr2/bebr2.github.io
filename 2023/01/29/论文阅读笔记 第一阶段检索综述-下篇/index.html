@@ -96,7 +96,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -373,16 +373,16 @@
 <h3 id="密集检索方法">密集检索方法</h3>
 <p>密集向量能更好地捕捉上下文信息。</p>
 <p>通常使用如下的双编码器结构，学习的密集表示通常以近似最近邻算法ANN进行搜索：</p>
-<p><img src="/img/article_content/2023-01-29/0.png" srcset="/img/loading.gif" lazyload alt="两个编码器是独立学习的"></p>
+<p><img src="/img/article_content/2023-01-29/0.png" alt="两个编码器是独立学习的"></p>
 <p>重要的是文档端的学习，密集检索方法可以分为term级和doc级：</p>
-<p><img src="/img/article_content/2023-01-29/1.png" srcset="/img/loading.gif" lazyload alt="注意，右侧document-encoder最顶层，个数不是文档的term数量"></p>
+<p><img src="/img/article_content/2023-01-29/1.png" alt="注意，右侧document-encoder最顶层，个数不是文档的term数量"></p>
 <h4 id="term-level">term-level</h4>
 <p>query和document都表示为term embedding的序列。</p>
 <p>最简单的方法是采用词嵌入，更高级的方法有：在大型未标注查询语料库上训练一个word2vec，保留了输入和输出映射（<em>这里很不理解，word2vec确实有两个矩阵，但是第二个矩阵是N*V维的，是将词向量投射到输出的，难道意思是把他转置或取伪逆？？？</em>），在ranking阶段，将query词映射到输入空间，将文档词映射到输出空间，然后聚合q-d之间的余弦相似度，可以对返回的top文档进行rerank。</p>
 <p>近来大模型的加入，例如DC-BERT和ColBERT，示意图如下。对query的编码是在线的，而对文档的编码是离线后缓存着的。<strong>DC-BERT</strong>后续使用预训练好的Transformer的后k层进行投影。<strong>ColBERT</strong>使用了交互函数MaxSim（maximum similarity），即针对每一个query term，计算它和所有document term的相似度（余弦相似度或L2距离）的最大值，然后对所有term加和。可以实现廉价高效检索 top-k 相关文档，相较于其他BERT模型速度快、精度差不多。另一个<strong>COIL</strong>模型与其类似，但在计算MaxSim时只与文档中完全匹配的词计算。</p>
-<p><img src="/img/article_content/2023-01-29/2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2023-01-29/2.png" alt=""></p>
 <p>另外，DeFormer和PreTTR旨在分解底层的BERT，查了一下DeFormer，大致是这样：由于Transformer 的低层（lower layers）编码主要关注一些局部的语言表层特征（词形、语法等等），到高层（upper layers）才开始逐渐编码与下游任务相关的全局语义信息。所以可以在前k层对文档编码离线计算得到第 k 层表征，query的第k层表征通过实时计算得到，然后拼接query和文档的表征输入到后面k+1到n层。所以可以加速。下面这幅图示意了DeFormer的计算过程：</p>
-<p><img src="/img/article_content/2023-01-29/3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2023-01-29/3.png" alt=""></p>
 <p>一个自然的扩展是文档的phrase-level（n-gram），而query被视为一个phrase，也就是query-encoder只输出一个embedding。计算相似性时就是query和doc的所有phrase计算。Seo等人提出为OpenQA服务的使用BiLSTM来学习phrase表示，进一步有人将其换为BERT。另外还有句子level的，此处不表。</p>
 <h4 id="document-level">document-level</h4>
 <p>为每个查询和<strong>每个文档</strong>学习一个或<strong>多个</strong>粗略的全局表示。</p>
@@ -394,22 +394,22 @@
 <p><strong>多个表示：</strong></p>
 <p>也就是文档的编码器会获得多个内容嵌入，而query编码器只获得一个嵌入。原因是文档通常很长且有不同侧面，而query一般很短且只有一个主题。Multi-Vector BERT就是这种，query输入后，只取[CLS]的输出作为嵌入，而document会取前m个（小于文档长度）作为嵌入，然后评分就是query embedding和每个document embedding的内积的最大值。</p>
 <p>另一个Poly-encoders，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mrow><mi>c</mi><mi>a</mi><mi>n</mi><mi>d</mi><mi>i</mi></mrow></msub></mrow><annotation encoding="application/x-tex">y_{candi}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">an</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>（我的理解就是query）会参与文档的attention计算：</p>
-<p><img src="/img/article_content/2023-01-29/4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2023-01-29/4.png" alt=""></p>
 <h3 id="混合检索方法">混合检索方法</h3>
 <p>稀疏检索方法以单词或“潜在单词”为索引单位，通过每个单位之间的正确匹配来计算分数，从而保持了较强的区分能力。因此，它们可以识别精确匹配，这对于检索任务非常重要。另一方面，密集检索方法学习连续嵌入来编码语义信息，单位的匹配是软的，但丢失了基础的检索功能。混合检索旨在拥有二者的优点，其结构一般如下：</p>
-<p><img src="/img/article_content/2023-01-29/5.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2023-01-29/5.png" alt=""></p>
 <p>GLM是使用翻译模型和传统语言模型线性组合的模型，过程没太看懂qwq。。。。</p>
 <p>结论是组合模型总是优于传统的语言模型。</p>
 <p>有一些工作尝试使用简单神经网络来学习稀疏和密集表示，BOW-CNN是为了检索类似query而产生的，结构如下，也就是在BOW的基础上加了密集向量CNN的信息：</p>
-<p><img src="/img/article_content/2023-01-29/6.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2023-01-29/6.png" alt=""></p>
 <p>另一种方法，将query学习为稀疏向量，文档学习为密集向量，使用点积计算相似度。</p>
 <p>随着预训练模型的兴起，自然的想法是将其与term-based的方法结合。Seo提出了DenSPI，对于phrase，密集向量使用BERT-based token的开始和末尾embedding，稀疏向量则计算2-gram的tf-dif。Lee等人用BERT取代DenSPI基于词频的稀疏向量计算，使用rectified self-attention间接学习。另外有人简单地将BM25和神经方法的分数线性组合（组合的超参数是经过训练的），也能得到很好的效果。总之，混合方法的有效性是明显的。</p>
 <h2 id="模型的训练">模型的训练</h2>
 <h3 id="损失函数">损失函数</h3>
 <p>最简单的是交叉熵损失（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>d</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">d^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7713em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span>是正样本，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>D</mi><mo>−</mo></msup></mrow><annotation encoding="application/x-tex">D^-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7713em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">−</span></span></span></span></span></span></span></span></span></span></span>是负样本的集合）：</p>
-<p><img src="/img/article_content/2023-01-29/7.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2023-01-29/7.png" alt=""></p>
 <p>还有hinge loss（其中<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mi mathvariant="normal">∣</mi><msup><mi>D</mi><mo>−</mo></msup><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">n=|D^-|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0213em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">−</span></span></span></span></span></span></span></span><span class="mord">∣</span></span></span></span>，m通常定为1）：</p>
-<p><img src="/img/article_content/2023-01-29/8.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2023-01-29/8.png" alt=""></p>
 <h3 id="负采样">负采样</h3>
 <p>负样本如何采样是一个问题，直接决定了模型的质量。大致有三类策略：</p>
 <h4 id="随机负采样">随机负采样</h4>
@@ -440,12 +440,12 @@
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">0.5</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">0.5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
 <p>N是所有文档数，n是包含某个term的文档数。</p>
 <p>R的计算如下：</p>
-<p><img src="/img/article_content/2023-01-29/9.png" srcset="/img/loading.gif" lazyload alt="f_i是q_i在d中的频率，qf_i是在q中的频率，dl是d长度，avgdl是所有文档平均长度"></p>
+<p><img src="/img/article_content/2023-01-29/9.png" alt="f_i是q_i在d中的频率，qf_i是在q中的频率，dl是d长度，avgdl是所有文档平均长度"></p>
 <h3 id="word2vec的训练">word2vec的训练</h3>
 <p>参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/114538417">深入浅出Word2Vec原理解析 - 知乎 (zhihu.com)</a></p>
 <h4 id="CBOW">CBOW</h4>
 <p>训练是用上下文预测中间的词。</p>
-<p><img src="/img/article_content/2023-01-29/10.png" srcset="/img/loading.gif" lazyload alt="V是词表大小，N是隐藏层维度，C是上下文C个词"></p>
+<p><img src="/img/article_content/2023-01-29/10.png" alt="V是词表大小，N是隐藏层维度，C是上下文C个词"></p>
 <p>输出的获得是W’ 矩阵乘以隐藏层，再softmax获得。</p>
 <p>最终要的矩阵是W矩阵，词向量的获得就是直接用独热编码乘以矩阵（即矩阵的某一行）。这个矩阵也叫look up table。</p>
 <h4 id="skip-gram">skip-gram</h4>
@@ -723,12 +723,6 @@
 
 
 
-
-  
-    
-      <script  src="/js/img-lazyload.js" ></script>
-    
-  
 
 
 

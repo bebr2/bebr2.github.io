@@ -87,7 +87,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -349,7 +349,7 @@
 <span id="more"></span>
 <h2 id="布斯算法">布斯算法</h2>
 <p>贴一个网上的介绍：</p>
-<p><img src="/img/article_content/2022-10-04/0.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-10-04/0.png" alt=""></p>
 <p>说得很好，但是第三点，为什么要算术右移？部分积又是什么东西？根本没解释清楚。</p>
 <h2 id="正确的计算过程">正确的计算过程</h2>
 <p>举例2 * (-5)。首先规定下乘数和被乘数。这里以2为被乘数，-5为乘数。</p>
@@ -357,15 +357,15 @@
 <p>-2：1110，2：0010，-5：1011。</p>
 <p>然后把乘数改动，每一位变成前一位减当前位，则成为：(-1) 1 0 (-1)</p>
 <p>然后直接相乘，-1时用-2的补码，1时用2的补码：</p>
-<p><img src="/img/article_content/2022-10-04/2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-10-04/2.png" alt=""></p>
 <p>记得在加之前补齐符号位</p>
-<p><img src="/img/article_content/2022-10-04/3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-10-04/3.png" alt=""></p>
 <p>结束。</p>
 <p>可以看到布斯算法的思想在这种呈现方式中展现得淋漓尽致，就是把两位合成为一位，减少计算量。</p>
 <p>可能有个bug就是在加到最后的时候溢出，此时要注意一下这个溢出会不会改变符号位，如果会应该多写几位。</p>
 <p>但是这里根本就没什么右移，只有左移；也不知道部分积在哪。</p>
 <h2 id="课件上莫名其妙的解释">课件上莫名其妙的解释</h2>
-<p><img src="/img/article_content/2022-10-04/1.png" srcset="/img/loading.gif" lazyload alt="课件上的截图"></p>
+<p><img src="/img/article_content/2022-10-04/1.png" alt="课件上的截图"></p>
 <p>上图的意思如下：乘数和被乘数固定为5位，然后红色是乘数，所谓右移，<strong>其实是乘数的右移</strong>！黑色部分右移了吗？右移了，但没有完全右移。你看它符号位倒是多了，但黑色的个位并没有因为右移而被抹去。</p>
 <p>上图中黑色和红色其实是可以分开，但写在一起是为了迎合所谓的“右移”。注意在加的时候（比如第三步），X和-X永远是5位，事实上是它们左移了，而不是部分积右移！</p>
 <p>所以我不知道为什么要这样教，难道这能体现出布斯算法的思想？抑或是这样更容易让早八的大学生懂？？？？？？？我实在是不理解。</p>
@@ -638,12 +638,6 @@
 
 
 
-
-  
-    
-      <script  src="/js/img-lazyload.js" ></script>
-    
-  
 
 
 

@@ -85,7 +85,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -347,7 +347,7 @@
 <span id="more"></span>
 <h2 id="cohesion是什么？">cohesion是什么？</h2>
 <p>说实话，只看英文翻译根本看不出来cohesion到底想要评什么分。</p>
-<p><img src="/img/article_content/2022-09-12/2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-09-12/2.png" alt=""></p>
 <p>然后在网上查了一下，发现雅思有这个评分标准：</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/379063611">雅思写作评分标准之Cohesion（上）-明衔接 - 知乎 (zhihu.com)</a></p>
 <p>大概意思是链接顺畅，连接词合理，使用代词，名词替换合理（最后这个我在实验前没看仔细，所以后文的处理方法有一丢丢小问题qaq，但是效果有提升就是了）。</p>
@@ -367,12 +367,12 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> nltk<br><span class="hljs-keyword">from</span> nltk.corpus <span class="hljs-keyword">import</span> wordnet<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_synonyms</span>(<span class="hljs-params">word</span>):<br>    synonyms = []<br>    <span class="hljs-keyword">for</span> syn <span class="hljs-keyword">in</span> wordnet.synsets(word):<br>        synonyms.extend(lm.name() <span class="hljs-keyword">for</span> lm <span class="hljs-keyword">in</span> syn.lemmas())<br>    <span class="hljs-keyword">return</span> random.choice(<span class="hljs-built_in">list</span>(<span class="hljs-built_in">set</span>(synonyms))) <span class="hljs-comment">#随机取同义词中的一个</span><br></code></pre></td></tr></table></figure>
 <h2 id="实验效果的对比">实验效果的对比</h2>
 <p>首先，先来看一下之前六个维度训练时，cohesion维度的效果：</p>
-<p><img src="/img/article_content/2022-09-12/3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-09-12/3.png" alt=""></p>
 <p>可以看到0.51476604，这个维度拖后腿比较严重（也验证了我说相互牵制的预测，cohesion比较看重上下文）。</p>
 <p>然后roberta-base单独训练，不使用增强数据时，降到了0.50多（忘了截图了），还是挺好的</p>
 <p>使用增强数据后，又到了0.5-了：</p>
-<p><img src="/img/article_content/2022-09-12/4.PNG" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>然后我还用deberta-base+增强数据训练了一下，不得不说deberta确实是yyds哈，这下已经到了0.472了（截至发文还没训练完）：<img src="/img/article_content/2022-09-12/5.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-09-12/4.PNG" alt=""></p>
+<p>然后我还用deberta-base+增强数据训练了一下，不得不说deberta确实是yyds哈，这下已经到了0.472了（截至发文还没训练完）：<img src="/img/article_content/2022-09-12/5.png" alt=""></p>
 <p>四个点的增强还是很舒服的。</p>
 
                 
@@ -638,12 +638,6 @@
 
 
 
-
-  
-    
-      <script  src="/js/img-lazyload.js" ></script>
-    
-  
 
 
 

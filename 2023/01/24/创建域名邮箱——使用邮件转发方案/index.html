@@ -83,7 +83,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -375,7 +375,7 @@
 <li>
 <p>别人可以通过DNS记录看到你的重定向地址。因为使用TXT记录，这是明文的，例如在windows的cmd下输入：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">nslookup <span class="hljs-attribute">-qt</span>=txt 网址<br></code></pre></td></tr></table></figure>
-<p><img src="/img/article_content/2023-01-24/0.png" srcset="/img/loading.gif" lazyload alt="涂红的就是我的重定向邮箱，虽然这里打码没什么用就是了"></p>
+<p><img src="/img/article_content/2023-01-24/0.png" alt="涂红的就是我的重定向邮箱，虽然这里打码没什么用就是了"></p>
 </li>
 </ol>
 <p>总之，我觉得免费版的服务就到头了，自己测试后确实觉得已经很不错了。</p>
@@ -383,7 +383,7 @@
 <p>如何在发邮件时也用自己的别名呢？</p>
 <p>outlook邮箱有这项服务，详见<a target="_blank" rel="noopener" href="https://forwardemail.net/zh/faq#can-i-send-mail-as-in-outlook-with-this">常见问题-outlook发送邮件 | Forward Email</a>。</p>
 <p>大概流程是需要在DNS配置中为Outlook设置SPF记录TXT记录，然后outlook的设置里搜索别名，点击进入下面界面：</p>
-<p><img src="/img/article_content/2023-01-24/1.png" srcset="/img/loading.gif" lazyload alt="在设置里修改默认发件地址"></p>
+<p><img src="/img/article_content/2023-01-24/1.png" alt="在设置里修改默认发件地址"></p>
 <p>先点击<strong>管理或选择主别名</strong>，可以添加别名，outlook会发一封邮件验证你是这个邮箱的主人，之后就返回到上图界面设置默认发件地址就行了。</p>
 <p>在华为手机的邮箱就能通过outlook登录（可以使用别名登录），然后发送的时候自动就使用别名，这样就实现了收发都是域名邮箱的功能。（缺点是：发送的时候，有的邮箱会看到使用某某outlook邮箱代发，有的简略没有显示，这确实没办法了）</p>
 
@@ -643,12 +643,6 @@
 
 
 
-
-  
-    
-      <script  src="/js/img-lazyload.js" ></script>
-    
-  
 
 
 

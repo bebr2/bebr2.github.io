@@ -104,7 +104,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -363,19 +363,19 @@
               <div class="markdown-body">
                 
                 <h2 id="检验马氏相容性">检验马氏相容性</h2>
-<p><img src="/img/article_content/2022-11-28/0.png" srcset="/img/loading.gif" lazyload alt="要求必须是有序的"></p>
-<p><img src="/img/article_content/2022-11-28/1.png" srcset="/img/loading.gif" lazyload alt="当排序困难时，与非后代条件独立"></p>
+<p><img src="/img/article_content/2022-11-28/0.png" alt="要求必须是有序的"></p>
+<p><img src="/img/article_content/2022-11-28/1.png" alt="当排序困难时，与非后代条件独立"></p>
 <h2 id="图模型的问题">图模型的问题</h2>
 <p>从概率到图：</p>
-<p><img src="/img/article_content/2022-11-28/2.png" srcset="/img/loading.gif" lazyload alt="顺序会影响I(G)的多少"></p>
+<p><img src="/img/article_content/2022-11-28/2.png" alt="顺序会影响I(G)的多少"></p>
 <p>从上面可以看出，马氏相容性只是限制了I(G)不会太多，但可能太少。</p>
 <p>从图到概率：</p>
-<p><img src="/img/article_content/2022-11-28/3.png" srcset="/img/loading.gif" lazyload alt="图只是定性的，如果定量的计算刚好能增加独立性，图表现不出来"></p>
+<p><img src="/img/article_content/2022-11-28/3.png" alt="图只是定性的，如果定量的计算刚好能增加独立性，图表现不出来"></p>
 <p>增加新的假设，<strong>忠实性假设</strong>：</p>
-<p><img src="/img/article_content/2022-11-28/4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-28/4.png" alt=""></p>
 <p>等价图的定义：</p>
 <p>相同骨架和V结构，就在等价类里面。</p>
-<p><img src="/img/article_content/2022-11-28/5.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-28/5.png" alt=""></p>
 <p>注意<strong>不是相同的V结构数目</strong>，也就是点是不动的。</p>
 <blockquote>
 <p>找到一个有向无环图，意味着找到了因果的含义吗？</p>
@@ -385,17 +385,17 @@
 </blockquote>
 <h2 id="因果贝叶斯网络">因果贝叶斯网络</h2>
 <p>引入干预：intervention，度量因果作用</p>
-<p><img src="/img/article_content/2022-11-28/6.png" srcset="/img/loading.gif" lazyload alt="可以在两方面给予帮助"></p>
+<p><img src="/img/article_content/2022-11-28/6.png" alt="可以在两方面给予帮助"></p>
 <p>干预的影响：</p>
 <ol>
 <li>被干预的变量，扔掉影响它的边（即没有父节点）</li>
 <li>其他变量的父节点不变</li>
 </ol>
-<p><img src="/img/article_content/2022-11-28/7.png" srcset="/img/loading.gif" lazyload alt="建立了干预世界和现实世界的桥梁"></p>
+<p><img src="/img/article_content/2022-11-28/7.png" alt="建立了干预世界和现实世界的桥梁"></p>
 <p>注意<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mrow><mi>d</mi><mi>o</mi><mo stretchy="false">(</mo><msub><mi>X</mi><mn>3</mn></msub><mo>=</mo><mi>o</mi><mi>n</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">(</mo><msub><mi>X</mi><mn>4</mn></msub><mi mathvariant="normal">∣</mi><msub><mi>X</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>X</mi><mn>3</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P_{do(X_3=on)}(X_4|X_2,X_3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1052em;vertical-align:-0.3552em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5198em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">o</span><span class="mopen mtight">(</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0785em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mrel mtight">=</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">n</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3552em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><msub><mi>X</mi><mn>4</mn></msub><mi mathvariant="normal">∣</mi><msub><mi>X</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>X</mi><mn>3</mn></msub><mo>=</mo><mi>o</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(X_4|X_2,X_3=on)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>的含义是不同的，后者是现实世界的条件概率。</p>
-<p><img src="/img/article_content/2022-11-28/8.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-11-28/9.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-11-28/10.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-28/8.png" alt=""></p>
+<p><img src="/img/article_content/2022-11-28/9.png" alt=""></p>
+<p><img src="/img/article_content/2022-11-28/10.png" alt=""></p>
 <p>干预后，就可以区分上面两种等价图了。</p>
 <p>和Rubin框架的比较：</p>
 <ol>
@@ -405,9 +405,9 @@
 <h2 id="其他模型">其他模型</h2>
 <h3 id="结构方程模型">结构方程模型</h3>
 <p>把原因放在右侧，结果放在左侧，本身不包含因果作用。</p>
-<p><img src="/img/article_content/2022-11-28/11.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-28/11.png" alt=""></p>
 <p>通过这个模型理解三个层次：</p>
-<p><img src="/img/article_content/2022-11-28/12.png" srcset="/img/loading.gif" lazyload alt="U是观测误差"></p>
+<p><img src="/img/article_content/2022-11-28/12.png" alt="U是观测误差"></p>
 <ol>
 <li>
 <p>关联性</p>
@@ -422,15 +422,15 @@
 <p>专注在某位同学上，观测误差是给定的了，在想象的这个层级里，降低了随机性。</p>
 </li>
 </ol>
-<p>​		Observation for Joe：X=0.5, H=1, Y=1.5<img src="/img/article_content/2022-11-28/13.png" srcset="/img/loading.gif" lazyload alt="算出观测误差的值，在干预下计算"></p>
+<p>​		Observation for Joe：X=0.5, H=1, Y=1.5<img src="/img/article_content/2022-11-28/13.png" alt="算出观测误差的值，在干预下计算"></p>
 <h2 id="ACE-under-Known-Causal-Structure">ACE under Known Causal Structure</h2>
-<p><img src="/img/article_content/2022-11-28/14.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-28/14.png" alt=""></p>
 <p>重点是如何搭建观测数据和干预世界的关系：</p>
-<p><img src="/img/article_content/2022-11-28/15.png" srcset="/img/loading.gif" lazyload alt="“调整公式”"></p>
-<p><img src="/img/article_content/2022-11-28/16.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-11-28/17.png" srcset="/img/loading.gif" lazyload alt="分母其实就是倾向得分"></p>
-<p><img src="/img/article_content/2022-11-28/18.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/article_content/2022-11-28/19.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-28/15.png" alt="“调整公式”"></p>
+<p><img src="/img/article_content/2022-11-28/16.png" alt=""></p>
+<p><img src="/img/article_content/2022-11-28/17.png" alt="分母其实就是倾向得分"></p>
+<p><img src="/img/article_content/2022-11-28/18.png" alt=""></p>
+<p><img src="/img/article_content/2022-11-28/19.png" alt=""></p>
 
                 
               </div>
@@ -702,12 +702,6 @@
 
 
 
-
-  
-    
-      <script  src="/js/img-lazyload.js" ></script>
-    
-  
 
 
 

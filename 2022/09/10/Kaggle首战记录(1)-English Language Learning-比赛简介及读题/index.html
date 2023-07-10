@@ -84,7 +84,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -346,15 +346,15 @@
 <span id="more"></span>
 <h2 id="比赛简介">比赛简介</h2>
 <h3 id="时间">时间</h3>
-<p><img src="/img/article_content/2022-09-10/3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-09-10/3.png" alt=""></p>
 <h3 id="内容">内容</h3>
 <p>训练一个模型，评估 8-12 年级英语语言学习者 (ELL) 的语言能力，输入是每个学生的写作文本（长文本），输出是六个维度的评分，评分范围为1-5分，评分是离散的，0.5分为一个间隔。</p>
 <p>需要评分的六个维度分别为：<span class="label label-primary">cohesion</span>  <span class="label label-primary">syntax</span> <span class="label label-primary">vocabulary</span> <span class="label label-primary">phraseology</span> <span class="label label-primary">grammar</span> <span class="label label-primary">conventions</span>。中文的直译是：连贯性、句法、词汇、短语、惯例用法（有一说一这些已经对非英语母语者不友好了qaq）。</p>
 <p>评估模型的好坏有两个赛道，一个是质量赛道，一个是效率赛道。</p>
 <p>质量赛道的评估函数为类MSE函数，其中N_t就是6，n是总测试样本数：</p>
-<p><img src="/img/article_content/2022-09-10/4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-09-10/4.png" alt=""></p>
 <p>效率赛道在此基础上考虑运行时间（只允许在CPU上运行），函数为：</p>
-<p><img src="/img/article_content/2022-09-10/5.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-09-10/5.png" alt=""></p>
 <p>其中Base是baseline的MCRMSE，minMCRMSE是榜上的最好MCRMSE。</p>
 <h2 id="读题">读题</h2>
 <p>首次参加比赛还是有很多不懂的，这里只是抛砖引玉写自己的理解而已（毕竟现在在质量赛道还是排名很后的orz）。</p>
@@ -625,12 +625,6 @@
 
 
 
-
-  
-    
-      <script  src="/js/img-lazyload.js" ></script>
-    
-  
 
 
 

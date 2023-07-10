@@ -94,7 +94,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -381,19 +381,19 @@
 <h2 id="简介">简介</h2>
 <p>非自回归（NAR）生成首先用于加速翻译，称为NAT模型，缓解AT模型O(n)复杂度的问题，但这是以精度为代价的。</p>
 <p>文章outline：</p>
-<p><img src="/img/article_content/2022-11-16/10.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-16/10.png" alt=""></p>
 <h2 id="总览">总览</h2>
 <h3 id="优化目标">优化目标</h3>
 <p>AT模型的优化目标：</p>
-<p><img src="/img/article_content/2022-11-16/11.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-16/11.png" alt=""></p>
 <p>（完全的）NAT模型的优化目标：</p>
-<p><img src="/img/article_content/2022-11-16/12.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-16/12.png" alt=""></p>
 <p>区别有二：第t个token的解码不取决于y&lt;t的序列，且在推理阶段，句子长度T是需要预测的。</p>
 <p>半自回归SAT模型的优化目标：</p>
-<p><img src="/img/article_content/2022-11-16/13.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-16/13.png" alt=""></p>
 <p>其中k是在一个时间步上并行生成的token数量。当k=1和k=T时，退化为AT和NAT模型。</p>
 <p>基于迭代的NAT模型优化目标：</p>
-<p><img src="/img/article_content/2022-11-16/14.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-16/14.png" alt=""></p>
 <p>每一步的解码以上一步的生成句子为基础，继续优化。</p>
 <h3 id="模型架构">模型架构</h3>
 <p>编码器基本没区别，主要是解码器。</p>
@@ -428,13 +428,13 @@
 <p>在推理时，每次迭代时低预测概率的token会被mask以供下一次迭代。这种mask的选择也有改进工作：如源句子相应的oken也被联合掩盖；使用自回归的解码器（和原来的解码器共享参数）来预测需要mask的token；使用更高级的策略选择mask等。</p>
 <h3 id="基于潜变量">基于潜变量</h3>
 <p>引入了潜变量Z，似然变为：</p>
-<p><img src="/img/article_content/2022-11-16/15.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-16/15.png" alt=""></p>
 <p>也就是先生成潜变量，再生成句子。其实就是decoder的输入如何优化。</p>
 <p>文章简单介绍了很多方法，没办法一篇篇点进去看，下面两种是有图的：</p>
 <p>第一种就是利用对齐信息，decoder的输入不再是简单的encoder输入，而是预测encoder输入中哪些单词如何与target对齐，再以此为decoder输入。</p>
-<p><img src="/img/article_content/2022-11-16/16.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-16/16.png" alt=""></p>
 <p>第二种就是重排，这个图有错误的，Reorder的输出是伪翻译，即source语言，但是顺序是以target语言为基础。</p>
-<p><img src="/img/article_content/2022-11-16/17.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-16/17.png" alt=""></p>
 <h3 id="其他">其他</h3>
 <ol>
 <li>使用短语表查找和嵌入映射，作为decoder的输入，使得其更接近目标句子</li>
@@ -443,7 +443,7 @@
 </ol>
 <h2 id="训练目标">训练目标</h2>
 <p>最基础的是交叉熵</p>
-<p><img src="/img/article_content/2022-11-16/18.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-16/18.png" alt=""></p>
 <p>问题就是正确翻译的顺序可能有多种，而NAT预测的token没有相互依赖，交叉熵会惩罚那些正确翻译但顺序和golden truth不一致的翻译。</p>
 <p>所以改成基于N-gram的损失函数。</p>
 <p>另外CTC和基于顺序的损失函数就似懂非懂，干看综述里是很不详细的，要点进去细看要花很久，所以没有看。</p>
@@ -470,7 +470,7 @@
 <p>我只看了摘要的任务，和NMT相比优势是目标句子的信息已经显式或隐式地在长文本输入中了。只有一篇论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2205.14521%EF%BC%8C%E6%84%9F%E8%A7%89%E6%9C%89%E7%82%B9%E5%A4%8D%E6%9D%82%E8%BF%98%E6%B2%A1%E7%BB%86%E7%9C%8B%E3%80%82">https://arxiv.org/abs/2205.14521，感觉有点复杂还没细看。</a></p>
 <h2 id="发展趋势">发展趋势</h2>
 <p>可以看到完全NAT已经越来越好了，快赶上迭代了。</p>
-<p><img src="/img/article_content/2022-11-16/19.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/article_content/2022-11-16/19.png" alt=""></p>
 
                 
               </div>
@@ -741,12 +741,6 @@
 
 
 
-
-  
-    
-      <script  src="/js/img-lazyload.js" ></script>
-    
-  
 
 
 

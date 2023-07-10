@@ -95,7 +95,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -387,25 +387,25 @@
 <p>通过数学推导在理论上说明训练时采用标签平滑会隐式地导致beam search解码机器翻译任务时存在长度惩罚，使得解码倾向于给出较短的结果，且理论上，标签平滑的模型会使得解码的长度存在与输入无关的常数上界。作者在实验中也发现了上述现象，并提出了修正方法。</p>
 <h2 id="背景知识">背景知识</h2>
 <p>标签平滑是一种正则化防止过拟合的方法，它将独热的标签平滑为实数向量，计算方法如下：</p>
-<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjIzODc4ZjZjNzJmMTZmOTFmOWM5MmZhN2ZiMzA5ZWRfV2dEU1pQcGNGdWxVNXNjZk8yNVhYMmlNalVxcHdaMHBfVG9rZW46Ym94Y25sTktMRlFkSjdtV2tiaVBaOWlMUGtnXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjIzODc4ZjZjNzJmMTZmOTFmOWM5MmZhN2ZiMzA5ZWRfV2dEU1pQcGNGdWxVNXNjZk8yNVhYMmlNalVxcHdaMHBfVG9rZW46Ym94Y25sTktMRlFkSjdtV2tiaVBaOWlMUGtnXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" alt="img"></p>
 <p>其中q是平滑前的概率向量（向量的维度为词表大小V，向量中每个元素代表对应索引的词的概率），它是独热的。α是超参数，一般取为0.1。平滑后，原来为1的元素会略微减小，原来为0的元素会略微增大。</p>
 <p>我们设模型给出的最后一层输出为向量q<code>，在充分训练后，q</code>可以视为模型给出的下一个时间步每个单词的概率，即有：</p>
-<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=NmQ3ZjI1OWYyMjRkNDQzNDMyYTI0M2IxYWJlMzQyNzJfTHFYNDVBNDhmV1cxYTk4cXRRNkdMSXJUbkp5MzhlODNfVG9rZW46Ym94Y25QRXA2VVlIV2pXWVA0SlF5OHQ3cm1jXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=NmQ3ZjI1OWYyMjRkNDQzNDMyYTI0M2IxYWJlMzQyNzJfTHFYNDVBNDhmV1cxYTk4cXRRNkdMSXJUbkp5MzhlODNfVG9rZW46Ym94Y25QRXA2VVlIV2pXWVA0SlF5OHQ3cm1jXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" alt="img"></p>
 <p>在beam search解码时，我们的目标是得到一个对数概率尽量大的序列，但由上文可知，我们使用的p_hat和真正的概率q存在一定偏差，因此有下式：</p>
-<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=M2M0ZDBhZjViMTZmZGNiY2I2OGI1ODk4NjEyZTdhYWNfeEh3M0h1a3JJWFdrSnVrRzRsRXB5U1JxZmFyWndZYkxfVG9rZW46Ym94Y25TUHFDWW53VVk3emtxNkJhREFON1dpXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=M2M0ZDBhZjViMTZmZGNiY2I2OGI1ODk4NjEyZTdhYWNfeEh3M0h1a3JJWFdrSnVrRzRsRXB5U1JxZmFyWndZYkxfVG9rZW46Ym94Y25TUHFDWW53VVk3emtxNkJhREFON1dpXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" alt="img"></p>
 <p>其中T是序列长度，y_t是t时间步的输出（序列的第t个词），可以看到最后序列的对数概率与真实的对数概率存在与序列长度线性相关的偏差，而log(1-α)是一个负值，当α取0.1时为-0.105，导致T越小，序列越短，对数概率越大，因此解码倾向于给出越短的序列。</p>
 <p>继续计算，我们可以得到p_hat的上下界：</p>
-<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=YjdiN2Q5M2M2ZjJkMzhjNGVmMDllMDdiYTJhNTY1NWZfNkxIaU5PWTJmOUU4eWhIVzVpRDRXcTJlNWdsdEdDaGRfVG9rZW46Ym94Y241UTVoSW82RVBraDBXZnFBZWRPZWdkXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=YjdiN2Q5M2M2ZjJkMzhjNGVmMDllMDdiYTJhNTY1NWZfNkxIaU5PWTJmOUU4eWhIVzVpRDRXcTJlNWdsdEdDaGRfVG9rZW46Ym94Y241UTVoSW82RVBraDBXZnFBZWRPZWdkXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" alt="img"></p>
 <p>那么对于空序列（仅由EOS构成）和某个序列，有：</p>
-<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjMzNjRiMTkwMmY2ZDc1NGI3ZmY4MWU4MmZmODlmNTNfTVJqUTVDRjRlRWZMWUNFWGozTTFJUTVTMDhOc1g5Z1VfVG9rZW46Ym94Y25MNlk4ZmVITmxDa3lEWjdFZFEwUmJqXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjMzNjRiMTkwMmY2ZDc1NGI3ZmY4MWU4MmZmODlmNTNfTVJqUTVDRjRlRWZMWUNFWGozTTFJUTVTMDhOc1g5Z1VfVG9rZW46Ym94Y25MNlk4ZmVITmxDa3lEWjdFZFEwUmJqXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" alt="img"></p>
 <p>两式比较，可以得到T有如此上界：</p>
-<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=NWQxNWJiZjZkYjYxYTc3YzM4ZjM4ZDM2MjQ5YjVjMTdfdnJDSkxxcHI5b3VRMnFaWW9rMTFaNnhmbjhNZHA0SXFfVG9rZW46Ym94Y245eDdqMFlGNDQxdElSMkQweEN4RGllXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=NWQxNWJiZjZkYjYxYTc3YzM4ZjM4ZDM2MjQ5YjVjMTdfdnJDSkxxcHI5b3VRMnFaWW9rMTFaNnhmbjhNZHA0SXFfVG9rZW46Ym94Y245eDdqMFlGNDQxdElSMkQweEN4RGllXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" alt="img"></p>
 <h2 id="方法">方法</h2>
 <p>通过上述的理论推导，将第一个公式逆过来，得到修正公式：</p>
-<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWUwMGJmNDk4YmM0MzlkMDliMzY4N2ExOTM3Yjc2MjZfN2Y4RmoyN2VRTUZtTDNEUkJ6RnN3WlFCNDNIOWIzdUxfVG9rZW46Ym94Y25UTHpMSEhsRWdGRERSODZpNE1PSkliXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWUwMGJmNDk4YmM0MzlkMDliMzY4N2ExOTM3Yjc2MjZfN2Y4RmoyN2VRTUZtTDNEUkJ6RnN3WlFCNDNIOWIzdUxfVG9rZW46Ym94Y25UTHpMSEhsRWdGRERSODZpNE1PSkliXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" alt="img"></p>
 <p>由于模型训练的结果不完全是概率，这样计算后概率值可能会超出[0, 1]，因此作者又增加了ReLU来避免这种情况。</p>
 <p>加上归一化，最终结果如下：</p>
-<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=OGNjYjQ2MWIzNTY1YjI1YzE2ZmRkOTVjY2VkMDMxYjBfcHpzMzZrZzVyWGVtb1BtSXRjUm5odFdXSE9sRGw3RFBfVG9rZW46Ym94Y25pRzJURGRETjQ2czNHbTBXZjJwQ1J6XzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=OGNjYjQ2MWIzNTY1YjI1YzE2ZmRkOTVjY2VkMDMxYjBfcHpzMzZrZzVyWGVtb1BtSXRjUm5odFdXSE9sRGw3RFBfVG9rZW46Ym94Y25pRzJURGRETjQ2czNHbTBXZjJwQ1J6XzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" alt="img"></p>
 <p>其中δ=α / V 。</p>
 <p>作者使用修正后的概率值，使用beam search进行实验。</p>
 <p>作者将模型的 δ 设为  n / V，其中n = 0.1、1、100，同时也探究了beam size分别为1、4、8、25、100、200的结果。</p>
@@ -448,7 +448,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=MzI3NzhiMjVjOGI3M2JkM2U3ZWZmOTU2NjZjMzE1ODVfaGpoQ3dkSU5KdVRhMjBWUjQ4cDJkMU1yZ2NnSlRyMlJfVG9rZW46Ym94Y25aV1pVN1VISnBwSE1KbGFDTlU3SDZiXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=MzI3NzhiMjVjOGI3M2JkM2U3ZWZmOTU2NjZjMzE1ODVfaGpoQ3dkSU5KdVRhMjBWUjQ4cDJkMU1yZ2NnSlRyMlJfVG9rZW46Ym94Y25aV1pVN1VISnBwSE1KbGFDTlU3SDZiXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" alt="img"></p>
 <ul>
 <li>
 <p>可以看到修正对贪心搜索没有影响，而随着k增大，修正的影响更大，在beam size = 200时，修正在横轴范围内使得BLEU值持续增大。</p>
@@ -460,7 +460,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=MTA3MjE0ZDcyMDYwZjU0ZTg0ZThkYWE5YTdiZjUyZDFfamJvQlZQSXh1bkY3Tm5KUHZxYk9xc3U1QTJMc1RJZG5fVG9rZW46Ym94Y25sWGFOTHFzMzl1cmFGWU15cDhiVUdlXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=MTA3MjE0ZDcyMDYwZjU0ZTg0ZThkYWE5YTdiZjUyZDFfamJvQlZQSXh1bkY3Tm5KUHZxYk9xc3U1QTJMc1RJZG5fVG9rZW46Ym94Y25sWGFOTHFzMzl1cmFGWU15cDhiVUdlXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" alt="img"></p>
 <ul>
 <li>
 <p>可以看到没有标签平滑的模型在较长查询中性能优于标签平滑模型。而修正后也能让较长查询的结果更好。</p>
@@ -472,7 +472,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=NWQ0NDZkYjJiNzRhZjUzNDVkNmVjNTlkMmEyYzIyNWFfcDhnYllCQ0dsRGVwcTR3d0tUM1JmQVdXV3QyZGZxQk5fVG9rZW46Ym94Y25kVTFJWjc4aHp6UXI3dmcxaWtXUXFnXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=NWQ0NDZkYjJiNzRhZjUzNDVkNmVjNTlkMmEyYzIyNWFfcDhnYllCQ0dsRGVwcTR3d0tUM1JmQVdXV3QyZGZxQk5fVG9rZW46Ym94Y25kVTFJWjc4aHp6UXI3dmcxaWtXUXFnXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" alt="img"></p>
 <ul>
 <li>
 <p>可以看到没有标签平滑、修正后的标签平滑均有利于生成更长的句子，且有利于更长的查询。</p>
@@ -484,7 +484,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=NTZiMWIzZGFhZTA2YzQzOTkzNjdlNmI0YjkyNTY5MjRfY1ZyN0tuSTc1VGdkV3ptV2xLZkhwZ01zdzdiN2daY0JfVG9rZW46Ym94Y25GanoyWGg1T3hNRlNQVkZxd2lRYXNmXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=NTZiMWIzZGFhZTA2YzQzOTkzNjdlNmI0YjkyNTY5MjRfY1ZyN0tuSTc1VGdkV3ptV2xLZkhwZ01zdzdiN2daY0JfVG9rZW46Ym94Y25GanoyWGg1T3hNRlNQVkZxd2lRYXNmXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" alt="img"></p>
 <ul>
 <li>
 <p>可以看到beam size为4时，δ = 1 / V是一个峰值，beam size为200时，随δ上升模型性能都有上升。这与预期相符。</p>
@@ -505,7 +505,7 @@
 <p>结果如下：</p>
 </li>
 </ul>
-<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=NGJhNDQyOWMxODY2MDkxNTIxZjQxYWQzNzVmMzRjZGNfYnEwZXFMMERYWUlrYm00bnM4YXI0M0xSek1YRWNVaTNfVG9rZW46Ym94Y25aN1dBVDZVYmdxNGV3Y2ZMWkw4WUFjXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://i1lqvqtgqs.feishu.cn/space/api/box/stream/download/asynccode/?code=NGJhNDQyOWMxODY2MDkxNTIxZjQxYWQzNzVmMzRjZGNfYnEwZXFMMERYWUlrYm00bnM4YXI0M0xSek1YRWNVaTNfVG9rZW46Ym94Y25aN1dBVDZVYmdxNGV3Y2ZMWkw4WUFjXzE2NjEzNDg5NTQ6MTY2MTM1MjU1NF9WNA" alt="img"></p>
 <p>标签平滑且无修正的系统过于自信，而经过修正后可以非常匹配。</p>
 <h2 id="个人点评和启发">个人点评和启发</h2>
 <p>用理论推导出beam search解码中存在的问题，并通过实验验证。</p>
@@ -777,12 +777,6 @@
 
 
 
-
-  
-    
-      <script  src="/js/img-lazyload.js" ></script>
-    
-  
 
 
 
