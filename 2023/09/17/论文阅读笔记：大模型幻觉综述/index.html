@@ -1,0 +1,870 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="baidu-site-verification" content="codeva-wEQoSuRzli" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#fec8c9">
+  <meta name="author" content="BeBr2">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="A Survey on Hallucination in Large Language Models：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2309.01219">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读笔记：大模型幻觉综述">
+<meta property="og:url" content="https://bebr2.com/2023/09/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B9%BB%E8%A7%89%E7%BB%BC%E8%BF%B0/index.html">
+<meta property="og:site_name" content="BeBr2&#39;s Blog">
+<meta property="og:description" content="A Survey on Hallucination in Large Language Models：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2309.01219">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bebr2.com/img/article_content/2023-09-17/0.png">
+<meta property="og:image" content="https://bebr2.com/img/article_content/2023-09-17/1.png">
+<meta property="og:image" content="https://bebr2.com/img/article_content/2023-09-17/2.png">
+<meta property="og:image" content="https://bebr2.com/img/article_content/2023-09-17/3.png">
+<meta property="og:image" content="https://bebr2.com/img/article_content/2023-09-17/4.png">
+<meta property="og:image" content="https://bebr2.com/img/article_content/2023-09-17/5.png">
+<meta property="article:published_time" content="2023-09-16T17:27:19.000Z">
+<meta property="article:modified_time" content="2023-09-16T17:27:19.000Z">
+<meta property="article:author" content="BeBr2">
+<meta property="article:tag" content="NLP">
+<meta property="article:tag" content="综述">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bebr2.com/img/article_content/2023-09-17/0.png">
+  
+  
+  
+  <title>论文阅读笔记：大模型幻觉综述 - BeBr2&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.6/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/mouse.css">
+
+
+
+<style>
+  html {
+  overflow-x:hidden;
+  }
+</style>
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"bebr2.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":4},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"451ae6c38ff2b682fd7894e9e2472e31","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?451ae6c38ff2b682fd7894e9e2472e31";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 80vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>BeBr2</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/diary/">
+                <i class="iconfont icon-note"></i>
+                随记
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/boat.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">论文阅读笔记：大模型幻觉综述</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-17 01:27" pubdate>
+          2023年9月17日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          58 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">论文阅读笔记：大模型幻觉综述</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>A Survey on Hallucination in Large Language Models：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2309.01219">https://arxiv.org/abs/2309.01219</a></p>
+<span id="more"></span>
+<h2 id="幻觉的定义">幻觉的定义</h2>
+<p>不同于前大模型时代，大模型时代中幻觉的定义有了变化，包括：</p>
+<h3 id="input-conflicting-hallucination">input-conflicting hallucination</h3>
+<p>输出和用户输入有悖，分为：不遵循用户任务指令和不遵循用户任务输入（比如文档等）两种。</p>
+<h3 id="context-conficting-hallucination">context-conficting hallucination</h3>
+<p>在多轮对话或长输出时容易出现，模型输出前后自我矛盾，这可能是由于模型长记忆性能的不足。</p>
+<h3 id="fact-conflicting-hallucination">fact-conflicting hallucination</h3>
+<p>输出和世界知识不匹配。这种是大模型时代需要集中研究的问题，一般来说的幻觉也主要指这种。因为前面两种在前大模型时代已经被研究过，指令微调也使得LLM能比较好地遵循指令。并且这两种幻觉容易被普通人发现，相比事实冲突幻觉危害更小。</p>
+<h2 id="LLM时代幻觉的挑战">LLM时代幻觉的挑战</h2>
+<h3 id="庞大的训练集">庞大的训练集</h3>
+<p>因为训练数据通常是互联网上的多种语料，很容易包含错误、过时或有偏见的信息。</p>
+<h3 id="LLM的通用性（versatility）">LLM的通用性（versatility）</h3>
+<p>LLM的跨任务、语言、领域性质，以及自由文本生成的特点，给评估和缓解提出挑战。</p>
+<h3 id="错误难以察觉">错误难以察觉</h3>
+<p>LLM有很强的写作能力，且有更大的知识量，使得人类难以判断其输出的信息是否正确。往往需要更多知识源才能验证输出是否正确。</p>
+<h2 id="和幻觉有关但有区别的术语">和幻觉有关但有区别的术语</h2>
+<h3 id="ambiguity">ambiguity</h3>
+<p>主要是回答模糊，没有用处。</p>
+<h3 id="incompleteness">incompleteness</h3>
+<p>回答不完整。</p>
+<h3 id="bias">bias</h3>
+<p>另一个需要解决的领域：不公平、偏见等。</p>
+<h3 id="under-informativeness">under-informativeness</h3>
+<p>RLHF导致模型拒绝回复一些本能回答的问题。</p>
+<h2 id="幻觉的评测">幻觉的评测</h2>
+<p>以前的评测集中在特定任务中，例如翻译、QA、摘要等，主要集中在 input-conflicting hallucination 上。现在更关注事实冲突。</p>
+<h3 id="benchmarks">benchmarks</h3>
+<p><img src="/img/article_content/2023-09-17/0.png" alt=""></p>
+<p><strong>能力</strong>：目前的benchmark主要评估两种能力：生成事实陈述或将事实陈述与非事实陈述区分开的能力（<strong>即生成和区分两种格式</strong>）。前者例如TruthfulQA评估模型回答的 truthfulness，后者例如HaluEval要求模型回答陈述是否包含幻觉、FACTOR要求LMM赋予事实陈述更高的likelihood。TruthfulQA也有多选题格式。</p>
+<p><strong>任务格式</strong>：某些benchmark探索了QA下的幻觉，评估LLM对知识密集型问题提供真实答案的能力；FActScore和HaluEval采用任务指令，如传记介绍和Alpaca的指令等；另外有一些提供prefix进行续写，例如FACTOR提供维基百科的前缀。</p>
+<p><strong>数据集的创建</strong>：</p>
+<p>TruthfulQA设计问题来引出在训练集分布上有高可能性的虚假陈述，然后雇人验证和真实答案的一致性。</p>
+<p>FActScore：<strong>采用人工标注将长篇模型回复转化为原子语句片段</strong>。？</p>
+<p>HaluEval：自动生成：设计prompt来让ChatGPT分析并自动生成高质量幻觉；人工标注：雇人标注模型回复中幻觉的存在。</p>
+<p>FACTOR：使用LLM生成非事实回复，再手动验证数据集是否非事实但流畅。</p>
+<h3 id="评估指标">评估指标</h3>
+<h4 id="人工评估">人工评估</h4>
+<p>TruthfulQA指导标注者为模型输出选择13个标签的一个，并且需要查询可靠来源来验证答案。FactScore则是选择支持、不支持或无关。但总之，成本太高。</p>
+<h4 id="Model-based-自动标注">Model-based 自动标注</h4>
+<p>TruthfulQA训练GPT-3-6.7B来判断，实现90-96%准确率（这么高，感觉可能是数据太简单了。。。）。</p>
+<p>AlignScore建立了一个统一的对齐函数，在一个大型数据集上训练，评估两个文本的事实一致性。</p>
+<p>FactScore采用一个retriever来收集相关信息，再用一个evaluation model如LLaMA-65B来使用检索的信息来确定答案的真实性。并采用micro F1 score和错误率来评估自动标注和人类标注的差别。</p>
+<p>也有直接设计prompt来询问evaluation LLM，相同上下文下目标LLM是否自相矛盾。</p>
+<h3 id="Rule-based自动标注">Rule-based自动标注</h3>
+<p>对于discrimination benchmark（就是区分事实和非事实的），常见的指标就是正确率。</p>
+<p>FactualityPrompt使用基于命名实体和文本蕴含的指标来捕捉不同的事实预期。？</p>
+<p>也有在prompt加入或不加入golden knowledge，然后比较生成的Rouge-L。</p>
+<h2 id="LLM幻觉的来源">LLM幻觉的来源</h2>
+<h3 id="缺乏相关知识或把错误知识内化">缺乏相关知识或把错误知识内化</h3>
+<p>训练阶段的数据存储在模型参数中，所以在推断时训练集的错误知识和缺乏的知识会导致错误。</p>
+<p>LLM有时会将虚假相关性（位置接近、高度共现）误解为事实，幻觉和训练数据的分布存在很强的相关性。例如LLM偏向于肯定测试样本。</p>
+<p>另外，模型的知识回忆和知识推理两种能力，是保证不出现幻觉的必要条件。</p>
+<h3 id="LLM会高估自己的能力">LLM会高估自己的能力</h3>
+<p>就是知识边界的问题，对于LLM，正确答案和不正确答案的分布熵可能很相似，也就是说模型对生成正确或错误答案的信心相同。</p>
+<p>Ren注意到准确度和置信度的关系，但是置信度通常超过大模型的能力（这个比较有趣，码住）。</p>
+<blockquote>
+<p>Investigating the factual knowledge boundary of large language models with retrieval aug- mentation.</p>
+<p>这篇文章的测试数据：</p>
+<p><em>Give-up：大模型放弃回答的问题的占比，可以估算为大模型回答的置信度；</em><br>
+<em>Right/G：大模型放弃回答，但实际上能够正确回答的概率；</em><br>
+<em>Right/NotG：大模型没有放弃回答，且实际上能够正确回答的概率；</em><br>
+<em>Eval-Right：大模型评估其回答是正确的问题的比例；</em><br>
+<em>Eval-ACC：大模型对答案的评估（正确或错误）与事实相符的问题的百分比。</em></p>
+<p><img src="/img/article_content/2023-09-17/1.png" alt=""></p>
+</blockquote>
+<p>总结就是无法判断自己的知识边界。</p>
+<h3 id="有问题的对齐过程可能会误导LLM产生幻觉">有问题的对齐过程可能会误导LLM产生幻觉</h3>
+<p>说人话就是，alignment时只是让模型和人类偏好一致，但如果这些指令的先决知识是模型预训练没有得到的，就会鼓励模型产生幻觉。以及模型可能会产生有利于用户观点的回答而不是正确回答。</p>
+<h3 id="LLM的生成策略">LLM的生成策略</h3>
+<p>每次生成一个token，而模型更喜欢对自己的早期错误滚雪球，而不是纠正自己的错误。“hallucination snowballing”。</p>
+<p>另外，token prediction的优化并不能确保sequence prediction的好，且采样策略可能也是幻觉的潜在来源。</p>
+<h2 id="幻觉的缓解">幻觉的缓解</h2>
+<h3 id="预训练阶段">预训练阶段</h3>
+<p>大多工作认为LLM的知识是在预训练阶段得到的。</p>
+<p>大模型时代语料库庞大，很难在预训练阶段手动整理数据。通常采用自动化去除噪声的方法：</p>
+<p>GPT-3的预训练数据通过与一系列高质量参考数据的相似性进行清理。</p>
+<p>Falcon通过启发式规则从网络中仔细提取高质量数据，并证明了经过适当分级的相关语料库可以产生强大的LLM。</p>
+<p>有的工作在事实性文档的句子前加上文档名称，使得每个句子都作为独立事实，观察到模型在TruthfulQA的表现提升。</p>
+<h3 id="SFT阶段">SFT阶段</h3>
+<p>数据量较小，手动处理是可行的。</p>
+<p>自动处理有让LLM作为评估者来选择的，精选数据后的性能在TruthfulQA上有更好的表现。</p>
+<p>“behavior cloning”：强化学习的概念，模型直接从专家的行为中学习，而没有学习策略。SFT可能也是这种情况，LLM在SFT阶段学习了回答问题，而不理会是否超出知识范围。解决这种方法可以在SFT数据中加入无法回答的样本，让模型拒绝回答，比如Moss。</p>
+<p>但是，这种honesty-oriented SFT只是反映了标注者的不确定，而不是LLM的真实知识边界。</p>
+<p>下图很形象：</p>
+<p><img src="/img/article_content/2023-09-17/2.png" alt=""></p>
+<h3 id="RLHF阶段">RLHF阶段</h3>
+<p>GPT4在RHLF阶段使用幻觉数据来训练reward model，在TruthfulQA提升了很多性能。</p>
+<p>和SFT一样的，也有使用honest samples来解决行为克隆的，比SFT过程的更好，因为允许LLM自由探索知识边界，减少大量人工标注（其实就是因为训练了reward model？以及不像SFT那样用MLE来优化）。设计了特殊的奖励函数：</p>
+<p><img src="/img/article_content/2023-09-17/3.png" alt=""></p>
+<p>hedged：犹豫地</p>
+<p>但也可能导致模型过度保守。</p>
+<h3 id="推理阶段">推理阶段</h3>
+<p>在推理时缓解幻觉更具可靠性。</p>
+<h4 id="解码策略">解码策略</h4>
+<p>有人发现topp的事实性没有greedy好，所以引入了factual-nucleus sampling，其实很简单（感觉有点trivial）：</p>
+<p><img src="/img/article_content/2023-09-17/4.png" alt=""></p>
+<p>另外还有ITI技术（Inference-Time Intervention），让一部分与“真实性方向”更近的注意力头的预测更偏近真实性方向。详见：<a target="_blank" rel="noopener" href="https://blog.csdn.net/hanseywho/article/details/132187861">大模型老是胡说八道怎么办？哈佛大学提出推理干预ITI技术有效缓解模型幻觉现象_TechBeat人工智能社区的博客-CSDN博客</a></p>
+<p>另外还有一种检索增强的CAD（Context-Aware Decoding）技术，LLM有时无法充分关注检索到的知识，尤其是当检索到的知识和模型已有知识冲突时。CAD利用检索到的文档，用一种&quot;contrastive ensemble&quot;的方法聚合<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><msub><mi>y</mi><mi>t</mi></msub><mi mathvariant="normal">∣</mi><mi>x</mi><mo separator="true">,</mo><mi>c</mi><mo separator="true">,</mo><msub><mi>y</mi><mrow><mo>&lt;</mo><mi>t</mi></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(y_t|x,c,y_{&lt;t})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">c</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mrel mtight">&lt;</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1774em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><msub><mi>y</mi><mi>t</mi></msub><mi mathvariant="normal">∣</mi><mi>x</mi><mo separator="true">,</mo><msub><mi>y</mi><mrow><mo>&lt;</mo><mi>t</mi></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(y_t|x,y_{&lt;t})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mrel mtight">&lt;</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1774em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，其中c是检索到的context（或者是本来就有的）。</p>
+<h4 id="外部知识">外部知识</h4>
+<p>包括两步：</p>
+<ol>
+<li>
+<p>知识的获取：外部知识作为“a form of hot patching for LLMs”。利用稀疏或密集检索在数据库搜索，也有让LLM直接使用tools的</p>
+</li>
+<li>
+<p>知识的利用：<img src="/img/article_content/2023-09-17/5.png" alt=""></p>
+<p>直接拼接，或者对中间输出进行后处理（这里的Fixer可以是另一个LLM或小模型，可以设计prompt询问是否更正内容等，或者使用推理链等技术）。</p>
+</li>
+</ol>
+<p>利用外部知识的优点是即插即用、实时更新、提高可解释性，但也有很多缺点：</p>
+<ol>
+<li>真实性：检索到的知识可能是捏造的甚至是LLM产生的。</li>
+<li>检索器或Fixer的效率可能不够。</li>
+<li>知识冲突：外部知识和储存的内部知识冲突、长篇的外部知识可能很难被利用等。</li>
+</ol>
+<h4 id="不确定性的利用">不确定性的利用</h4>
+<p>其实就是让模型给出置信度，分为几种：</p>
+<ol>
+<li>
+<p>基于logit</p>
+</li>
+<li>
+<p>基于语言，就是直接prompt：“Please answer and provide your confidence score (from 0 to 100).”，也可以用CoT来提示，有点搞笑但有用。</p>
+</li>
+<li>
+<p>基于一致性：</p>
+<p>selfcheckGPT：使用BERTScore、QA-based metrics和n-gram metrics的组合确定不同回复的一致性。也有用另一个LLM来评估两次回复的一致性的，等等等等。</p>
+</li>
+</ol>
+<p>三种都有不足：logit不适合商业闭源的LLM，语言的方法中LLM通常过度自信，基于一致性的关键则是如何测量一致性。</p>
+<h4 id="其他方法">其他方法</h4>
+<ol>
+<li>Multi-agent interaction：用多个智能体（LLM）讨论达成共识，或者一个作为examinee一个作为examiner，或者一个LLM模拟多个角色等等。</li>
+<li>Prompt Engineering：例如CoT，但是CoT中可能推理步骤也是幻觉，现在的大模型都有“system prompt”，例如LLaMA2的“If you don’t know the answer to a question, please don’t share false information.”</li>
+<li>Analyzing LLMs’ internal states：Statement Accuracy Prediction based on Language Model Activations（SAPLMA）在LLM的每个隐藏层顶部增加分类器，LLM可能知道他们生成的语句何时是错误的。上文的ITI也是类似的调整内部状态的方法，这些方法表明“the hallucination within LLMs may be more a result of generation techniques than the underlying<br>
+representation”</li>
+<li>Human-in-the-loop：幻觉可能是检索的知识和用户问题不一致，所以提出MixAlign，对齐知识和输入，并鼓励用户鉴别这种对齐，迭代地重新定义用户查询</li>
+<li>Optimizing model architecture：比如从左到右和从右到左建模等。</li>
+</ol>
+<h2 id="展望">展望</h2>
+<p>未来的研究方向：</p>
+<h3 id="评估方法">评估方法</h3>
+<ol>
+<li>自动评估和人类标注不完全一致。</li>
+<li>自动评估的泛化能力低，很依靠不同LLM或不同领域。</li>
+</ol>
+<p>当然discrimination-style的评估方法比较准确，但是可能和generation的有差别。</p>
+<h3 id="多语言">多语言</h3>
+<p>在非拉丁语中LLM的性能下降，例如在翻译任务中，多语言LLM对小语种的幻觉更大。</p>
+<h3 id="多模态">多模态</h3>
+<h3 id="模型编辑">模型编辑</h3>
+<p>是一种修改模型原始参数，或用辅助子网络来协助的技术。包括editing black-box LLMs, in-context model editing 和 multi-hop model editing。</p>
+<h3 id="诱导幻觉的攻防">诱导幻觉的攻防</h3>
+<p>例如一些越狱prompt。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="category-chain-item">论文笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" class="category-chain-item">大模型</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/NLP/">#NLP</a>
+      
+        <a href="/tags/%E7%BB%BC%E8%BF%B0/">#综述</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>论文阅读笔记：大模型幻觉综述</div>
+      <div>https://bebr2.com/2023/09/17/论文阅读笔记：大模型幻觉综述/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>BeBr2</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月17日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc/4.0/">
+              <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                <i class="iconfont icon-nc"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%20JPQ-%E6%8F%90%E5%8D%87%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2/" title="论文阅读笔记 JPQ-提升向量检索">
+                        <span class="hidden-mobile">论文阅读笔记 JPQ-提升向量检索</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments">
+    
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'bebr2/BlogComment');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <span>THU<span> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Theme：Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
+
+<!-- <script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script> -->
+
+<!-- <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/firework.js"></script> -->
+
+
+<!-- 雪花特效 -->
+<script type="text/javascript" src="\js\snow.js"></script>
