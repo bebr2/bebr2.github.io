@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>论文阅读笔记：HaDes 幻觉检测benchmark</title>
+    <link href="/2023/10/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%9AHaDes%20%E5%B9%BB%E8%A7%89%E6%A3%80%E6%B5%8Bbenchmark/"/>
+    <url>/2023/10/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%9AHaDes%20%E5%B9%BB%E8%A7%89%E6%A3%80%E6%B5%8Bbenchmark/</url>
+    
+    <content type="html"><![CDATA[<table><thead><tr><th><strong>题目</strong></th><th><strong>A Token-level Reference-free Hallucination Detection Benchmark for Free-form Text Generation</strong></th></tr></thead><tbody><tr><td><strong>论文链接</strong></td><td><a href="https://arxiv.org/abs/2104.08704">https://arxiv.org/abs/2104.08704</a></td></tr><tr><td><strong>作者单位</strong></td><td>北大、微软</td></tr><tr><td><strong>会议</strong></td><td>ACL 2022</td></tr></tbody></table><h2 id="背景">背景</h2><p>现有的工作（21年）已经包括生成式摘要、机器翻译等reference-based任务的幻觉检测，但文本生成任务的reference不容易获得。</p><p>常见的幻觉检测任务通常是句子或文档级的，例如fake news detection或fact checking任务，但这种检测比较难精确定位到幻觉文本，或者只能判断生成的句子或文档整体是否有幻觉。如果幻觉能在token级别被识别，可以实时调整解码策略（例如降低某些token的概率）。</p><p>提出了一个<em>reference-free, token-level hallucination detection</em> 任务及其数据集HaDes。希望能检测幻觉的细粒度信号、实时减轻幻觉。</p><p>贡献：</p><ol><li>提出了这个任务</li><li>创建了HaDes数据集</li><li>创建了多个baseline</li></ol><h2 id="任务设置">任务设置</h2><p>将幻觉检测定义为二元分类任务，为模拟真实世界的NLG，提出两个子任务：offline和online。离线中模型能感知双向上下文，在线中模型只能访问单向上下文。</p><p><img src="/img/article_content/2023-10-09/0.png" alt=""></p><h2 id="数据集创建">数据集创建</h2><p>将网页数据从“raw text”干扰为“perturbed text”，再让人类标注是否幻觉。</p><h3 id="Raw-Data的收集">Raw Data的收集</h3><p>使用了WIKI-40B-EN，随机采样文章的第一段，过滤掉少于5句的文本。</p><h3 id="文本的干扰">文本的干扰</h3><p>使用BERT来干扰，原则是：</p><ol><li>保持扰动文本的流畅性和句法正确性。</li><li>扰动文本在词汇上多样化。</li></ol><p>在原始文本的前两句不扰动，避免“early token curse”（就是前面的token看到的信息太少），然后分为三个阶段：</p><ol><li>MASK：使用[MASK] token从第三句话开始随机预定义的比率p随机mask掉单词（默认mask掉一个，除非spacy实体识别为更长的长度，即实体为最小的mask单元），不mask停用词或标点符号</li><li>REPLACE：利用BERT-base来预测mask掉的部分，为了更好的流畅性，是从左到右预测mask文本的，实验中保持了干扰前后token数量相同，并且直接强制不生成原始token。比较了贪婪、topp、topk几种解码策略，每种方法采样30个文本，最后选择了topk（k=10），因为多样性（生成不同token的数量）和流畅性的权衡最好。</li><li>RANK：对每个raw text生成20个候选扰动文本，使用GPT-2根据困惑度排序，保留困惑度最低的文本，保证流畅性和句法正确性。</li></ol><h3 id="数据标注">数据标注</h3><p>得到约1M的扰动文本，但并不是都有幻觉，所以采用Iterative Model-in-the-loop annotation来过滤。</p><ol><li><p>标注的设置：使用众包平台选择成绩良好的北美英语使用者，并通过简单问题筛选。原始文本和干扰文本都提供给注释者，每对有4个注释者标注（H or N），如果没有达成共识，增加注释者，最多为六个，保留已经达成共识（似乎是&gt;= 80%）的注释。</p></li><li><p><strong>Iterative Model-in-the-loop annotation</strong>：注释了一个子集，这个子集是这么挑选的：1) 数据平衡；2) 不能太简单。</p><p>选出这个子集很困难，所以采用Iterative Model-in-the-loop annotation策略，分成几轮，每一轮中根据前几轮的标注重新训练一个BERT检测模型，然后在下一个批次的数据中用这个模型选出数据。丢弃掉模型分配概率高或低的样本（这个阈值随轮次变化），为避免扰动的文本只是简单转述，使用RoBERTa模型测量替换文本和原始文本的余弦相似度（[CLS]），过滤掉相似度得分大于0.9的情况，还删除了大量明显幻觉的实例，目标文本中是日期或名字，并被不同的日期或名字替代（<strong>？？？为啥这种是trivial的，对模型来说不一定是啊</strong>）。</p><p>最初几轮的标注中幻觉H和非幻觉N不平衡（90%是H），我们根据检测模型预测的标签进行额外的子采样（大概是根据真阳性、真阴性和正确率来选择下一轮的数据），来保证H / N的平衡。</p></li></ol><h3 id="数据分析">数据分析</h3><p>我跳过了这一部分。</p><h2 id="基线模型">基线模型</h2><p>Featrue-based：平均单词概率、平均熵（这两个用BERT-based算）、TF-IDF、PPMI、POS（比如动词、形容词的区别）、NER（是否是命名实体）。然后使用逻辑回归LR和支持向量机SVM来学习。</p><p>Transformer-based：BERT、GPT-2（只能用于在线设置）、XLNet和RoBERTa。从最后一层的hidden-state中最大池化，然后映射到0-1标签熵，训练时就用交叉熵。</p><h2 id="实验">实验</h2><p>一些细节就把不说了，探究到的最好参数是：使用最大池化而非平均池化、使用2层隐藏维数为h / 2的MLP，将模型参数冻结，只微调分类器。</p><p>评价指标：accuracy, precision, recall, F1（p, r, F1分H和N计算）, AUC, G-Mean, BSS</p><blockquote><p>AUC：<a href="https://zhuanlan.zhihu.com/p/81202617">一文看懂ROC、AUC - 知乎 (zhihu.com)</a>，大概是计算假正类率FPR和真正类率TPR的曲线x-y下的面积（调整阈值得到许多点）</p><p>G-Mean：<strong>G-Mean</strong> = sqrt(Sensitivity * Specificity)</p><p><strong>Sensitivity</strong> = 真阳性 / (真阳性 + 假阴性)</p><p><strong>Specificity</strong> = 真阴性 / (假阳性 + 真阴性)</p><p>BSS：参考<a href="https://zhuanlan.zhihu.com/p/406121884">不平衡分类的评价指标阐幽 - 知乎 (zhihu.com)</a>其实就是先算BrierScore（类似于L2loss），再算BrierScore_ref（无skill分类器的得分(例如训练数据集中预测正类的概率分布)）。</p></blockquote><ol><li>baseline的性能：</li></ol><p><img src="/img/article_content/2023-10-09/1.png" alt=""></p><ol start="2"><li><p>上下文长度对性能的影响：</p><p><img src="/img/article_content/2023-10-09/2.png" alt=""></p><p>可以发现随context length增加而增加，并且离线的性能会更好一点。</p></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文笔记</category>
+      
+      <category>大模型</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>NLP</tag>
+      
+      <tag>幻觉</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>论文阅读笔记：大模型幻觉综述</title>
     <link href="/2023/09/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B9%BB%E8%A7%89%E7%BB%BC%E8%BF%B0/"/>
     <url>/2023/09/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B9%BB%E8%A7%89%E7%BB%BC%E8%BF%B0/</url>
